@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="ru-ru">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Определяющие факторы - Trunk Based Development</title>
+    <meta name="generator" content="Hugo 0.74.3" />
+
+    
+    <meta name="description" content="A portal on this practice">
+    
+    <link rel="canonical" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+    
+    <meta name="author" content="paul-hammant">
+    
+
+    <meta property="og:url" content="https://trunkbaseddevelopment.ru/deciding-factors/">
+    <meta property="og:title" content="Trunk Based Development">
+    <meta property="og:image" content="https://trunkbaseddevelopment.ru/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Trunk Based Development">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot');
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.woff')
+               format('woff'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.ttf')
+               format('truetype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/application.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://trunkbaseddevelopment.ru/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-light-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Trunk Based Development: Определяющие факторы
+      </div>
+    </div>
+
+    
+
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <div class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://trunkbaseddevelopment.ru/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Trunk Based Development</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <hr>
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Введение" href="https://trunkbaseddevelopment.ru/">
+	
+	Введение
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Контекст" href="https://trunkbaseddevelopment.ru/context/">
+	
+	Контекст
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Краткий обзор" href="https://trunkbaseddevelopment.ru/5-min-overview/">
+	
+	Краткий обзор
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Определяющие факторы" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+	
+	Определяющие факторы
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Функции системы контроля версий" href="https://trunkbaseddevelopment.ru/vcs-features/">
+	
+	Функции системы контроля версий
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Version control system choices" href="https://trunkbaseddevelopment.ru/vcs-choices/">
+	
+	Version control system choices
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Флаги для функций" href="https://trunkbaseddevelopment.ru/feature-flags/">
+	
+	Флаги для функций
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветвление по абстракции" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+	
+	Ветвление по абстракции
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветка для релиза" href="https://trunkbaseddevelopment.ru/branch-for-release/">
+	
+	Ветка для релиза
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Релиз из ветки trunk" href="https://trunkbaseddevelopment.ru/release-from-trunk/">
+	
+	Релиз из ветки trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Styles and Trade-offs" href="https://trunkbaseddevelopment.ru/styles/">
+	
+	Styles and Trade-offs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Integration (CI)" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+	
+	Continuous Integration (CI)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Вливание кода напрямую в trunk" href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">
+	
+	Вливание кода напрямую в trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Short Lived Feature Branches" href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">
+	
+	Short Lived Feature Branches
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Code Review" href="https://trunkbaseddevelopment.ru/continuous-review/">
+	
+	Continuous Code Review
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Delivery (CD)" href="https://trunkbaseddevelopment.ru/continuous-delivery/">
+	
+	Continuous Delivery (CD)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Concurrent development of consecutive releases" href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">
+	
+	Concurrent development of consecutive releases
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application strangulation" href="https://trunkbaseddevelopment.ru/strangulation/">
+	
+	Application strangulation
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Observed habits" href="https://trunkbaseddevelopment.ru/observed-habits/">
+	
+	Observed habits
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="You&#39;re doing it wrong" href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/">
+	
+	You&#39;re doing it wrong
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Alternative branching models" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+	
+	Alternative branching models
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Monorepos" href="https://trunkbaseddevelopment.ru/monorepos/">
+	
+	Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Expanding Contracting Monorepos" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+	
+	Expanding Contracting Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Game Changers" href="https://trunkbaseddevelopment.ru/game-changers/">
+	
+	Game Changers
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Publications" href="https://trunkbaseddevelopment.ru/publications/">
+	
+	Publications
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Book on this topic" href="https://trunkbaseddevelopment.ru/book/">
+	
+	Book on this topic
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Key to branch diagrams" href="https://trunkbaseddevelopment.ru/key/">
+	
+	Key to branch diagrams
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Contributions" href="https://trunkbaseddevelopment.ru/contributions/">
+	
+	Contributions
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+
+        <ul>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd" target="_blank" title="See GitHub Repo">
+              Site Source on Github
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd/commit/" target="_blank">
+              SHA-1 Published: 
+            </a>
+          </li>
+          </li>
+<iframe id="buy" width='160' height='400' src='https://leanpub.com/trunk-based-development/embed' frameborder='0' allowtransparency='true'></iframe>
+          <li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1 style="color: white; padding: 32px 20px 72px; background-image:url(/public_html/images/LogoSlim.png); background-repeat: no-repeat; background-size: 100% auto"><span style="background-color: #5677fc">Определяющие факторы </span></h1>
+
+			<h2 id="частота-релизов">Частота релизов</h2>
+<p>Есть много факторов, которые создают давление на команду в промежутке между релизами. Вот некоторые из них.
+There are many factors that put pressure on the team to lengthen the interval between releases. Here are some.</p>
+<h3 id="длина-итерации">Длина итерации</h3>
+<p>Разные Agile команды имеют разную длину итерации. Какие-то команды работают с итерациями по 3 недели, какие-то по 2 недели,
+какие-то по 1 неделе. Какие-то команды не имеют итераций вообще, особенно если они используют технику Continuous Delivery..</p>
+<p>Если ваша итерация длится 4 недели или больше, и каждая из этих четырех недель меняется при приближении к релизу
+и не можете быть изменена, то вы можете быть в затруднительном положении. Вы можете следовать заветам
+Trunk-Based Development, пользоваться всеми преимуществами Continuous Integration (это возможно в любой модели ветвления),
+но вы можете быть не в состоянии сделать Continuous Delivery (или Continuous Deployment).</p>
+<h3 id="водопад">Водопад</h3>
+<p>Тут все просто. Если вы работаете по водопаду (каскадная модель управления проектами), то до требования &ldquo;не ломать сборку&rdquo;,
+которое нужно для Trunk-Based Development, вам рукой подать. Попробуйте Agile методологии с короткой итерацией,
+например Экстремальное Программирование.</p>
+<h3 id="объем-задачи">Объем задачи</h3>
+<p>В Trunk-Based Development подходе нужно чтобы у вас были задачи небольшого размера. Оптимальное время работы над задачей от начала кодинга
+до отправки на code review - несколько часов. Если код пишется больше пары дней, то потом придется объединять свой код с кодом других
+разработчиков в какой-нибудь отдельной ветке и вливать это в trunk. Или, что ещё хуже, из-за вас другим придется создавать ветку от вашей
+ветки, в которой вы сейчас работаете. Или, что тоже неприятно, забирать код, который был влит в вашу ветку, несмотря на то,
+что работа сделана не до конца.</p>
+<p>В общем, всей команде разработки следует декомпозировать большие задачи на более маленькие.
+В Agile есть мнемоническое правило INVEST<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://en.wikipedia.org/wiki/INVEST_%28mnemonic%29"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>, которое помогает
+декомпозировать задачи.</p>
+<h3 id="время-сборки">Время сборки</h3>
+<p>Сохранить время билда небольшим очень важно, потому что это прямо влияет на количество вливаний кода,
+который разработчики пишут в течение рабочего дня. Если время сборки составляет несколько минут,
+то разработчики более охотно будут держать высокий темп вливания кода. Если время сборки 30 минут или больше,
+то разработчики будут вливать свой код в trunk всего-лишь пару раз в день, и это уменьшит их пропускную способность.</p>
+<h2 id="выбор-системы-контроля-версий">Выбор системы контроля версий</h2>
+<p>Выбранная вами система контроля версий должна облечать задачу ежедневного многократного обновления и синхронизации кода.
+Время для обновления/синхронизации кода должен быть менее 3 секунд для ситуации, когда у вас уже есть последняя версия кода.
+Если trunk ветка находится впереди вашей, то время синхронизации/обновления кода должно быть не более 15 секунд.</p>
+<p>Старые версии ClearCase и PVCS Dimensions делали первую операцию за 30 минут, а вторую за 45 минут.
+Это время удваивалось если два разработчика одновременно пытались сделать операцию синхронизации/обновления кода.
+При такой конфигурации работать по Trunk-Based Development не представляется возможным.</p>
+<h3 id="двоичные-файлы-в-репозитории">Двоичные файлы в репозитории?</h3>
+<p>В зависимости от того, сколько раз и как часто используются двоичные файлы, одни системы контроля версий подходят для их хранения лучше, чем другие.
+Perforce может обрабатывать терабайты двоичных и тестовых файлов. Subversion стремится к этому. Git может обрабатывать только огромные бинарные файлы если
+он настроен в Git-LFS режиме<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://git-lfs.github.com/"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>.</p>
+<h3 id="размер-репозитория">Размер репозитория?</h3>
+<p>Существует рекомендация для Git и Mercurial не хранить историю (за исключением Git+LFS), размер которой превышает 1 гигабайт.
+Есть различные отчеты, которые могут быть во много раз больше этого размера, но командой разработки все-таки рекомендуется максимальный размер в 1 гигабайт.
+Если вы хотите использовать Git и каждый год не упираться в этот лимит, то вы можете оказаться в ситуации,
+когда вам придется продолжать архивировать репозиторий и запускать новый без истории, чтобы иметь больше места для хранения истории.
+Архивирование может выглядеть как переименование репозитория в GitHub и превращение его в доступный только для чтения,
+чтобы вся история, issues и комментарии на code review сохранились.
+Более простые и рациональные стратегии клонирования могут включать рекомендуемую &ldquo;&ndash;shallow-Since&rdquo; дату клонирования или использование
+более современных возможностей частичного клонирования для клонирования полного репо с фиксацией истории,
+не получая historical blobs (в папке .git/ - прим. пер.) до тех пор, пока они не понадобятся.</p>
+<h3 id="пиковая-частота-вливаний-кода">Пиковая частота вливаний кода</h3>
+<p>В &ldquo;чистом&rdquo; Git, если коллега опередил вас и влил свой код (он прошел code review и автотесты на CI для его ветки прошли успешно) в тот момент,
+когда вы планировали влить свой код, то Git вас предупредит о том, что вы сначала должны подтянуть его изменения к себе, а только потом вливать код.
+Вы подтягиваете код и исправляете конфликты в коде (будем надеяться что их нет), и затем вливаете свой код. В репозиториях, где идет активная работа,
+вам иногда может быть тяжело найти момент для того, чтобы влить код таким образом, не столкнувшись с этой проблемой снова.
+Эта проблема известна как &ldquo;гонка слияний&rdquo;.</p>
+<p>Базирующиеся на forks &ldquo;pull запросы&rdquo; и базирующиеся на ветках &ldquo;merge запросы&rdquo; в git сервисах решают эту проблему в определенной степени с помощью подхода,
+который автоматически поддерживает ветки с запросами на слияние в <code>master</code> на урвоне мастера до тех пор, пока там не возникают конфликты.</p>
+<p>Однако, даже с Pull запросами, очень высокая частота вливаний кода в общем репозитории означает конкуренцию и искусственную сериализацию.
+Это стало одной из причиной для Miscrosoft создать свою виртуальную файловую систему Git (<del>GitVFS</del> <del>GVFS</del> VFS for Git<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://vfsforgit.org/"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>).</p>
+<div class="admonition quote">
+<p class="admonition-title">В Git есть критические точки сериализации, которые могут привести к плохому резервному копированию очереди.</p>
+<span style="padding-left: 15px"><!-- raw HTML omitted -->— Brian Harry<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->Refer to Brian&rsquo;s &ldquo;More on GVFS&rdquo; blog entry<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></span>
+</div>
+<br/>
+<p>Мы уверены, что через несколько лет Git сможет справиться и с более высокой частотой вливаний кода.
+Либо с помощью технологии Microsoft, либо с помощью чего-то другого.</p>
+<h2 id="закон-конвея">Закон Конвея</h2>
+<p>По тому, какого качества приложения и сервисы создает организация, можно понять какая у этой организации
+структура<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://en.wikipedia.org/wiki/Conway%27s_law"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>. Если это утверждение верно для вашей организации, и монорепозиторий ей не подходит,
+то можно попробовать микросервисы.</p>
+<h2 id="перенос-баз-данных">Перенос баз данных</h2>
+<p>Чтобы управлять схемами базы данных в Trunk-Based Development, вам нужно будет найти способ обрабатывать изменения формы таблицы в системе управления версиями и даже управлять существующими данными, в которых появились новые/измененные столбцы. Книга Прамода Садладжа(Pramod Sadlage) и Скотта Амбера(Scott Amber)
+&ldquo;Рефакторинг баз данных: эволюционный дизайн базы данных&quot;<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.amazon.com/Refactoring-Databases-Evolutionary-paperback-Addison-Wesley/dp/0321774515"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> рассказывает про это очень много, равно как и книга <a href="https://trunkbaseddevelopment.ru/continuous-delivery/">Continuous Delivery</a>.</p>
+<h2 id="общее-владение-кодом">Общее владение кодом</h2>
+<p>Команды, работающие по Trunk-Based Development, обычно имеют общие правила владения кодом, касающиеся внесения изменений в различные части кода.
+Если у них нет полностью равноправной системы для всех разработчиков, то у них должнв быть объективные правила для внесения изменений в код.
+Правила, которые сосредоточены на стандартах и предполагают быструю и объективную проверку кода.
+Команды, работающие по Trunk-Based Development, могут иметь свои особенные разрешения на запись для каталогов внутри ветки trunk,
+но <strong>никогда</strong> не имеют никаких препятствий для чтения файлов в trunk ветке - все могут видеть все.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+
+			<aside class="copyright" role="note">
+				&copy; 2017-2020: <a href="https://devops.paulhammant.com/">Paul Hammant</a>. With Contributions <a href="https://trunkbaseddevelopment.ru/contributions/">from friends</a>.
+				Site built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				with
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme,
+				via <a href="https://netlify.com/">Netlify</a>. &nbsp;
+				<a href="https://github.com/paul-hammant/tbd/edit/master/content//_index.md">Contribute to this page</a>
+
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://trunkbaseddevelopment.ru/vcs-features/" title="Функции системы контроля версий">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Функции системы контроля версий
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://trunkbaseddevelopment.ru/5-min-overview/" title="Краткий обзор">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Краткий обзор
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/trunkbaseddevelopment.ru\/';
+      var repo_id  = 'paul-hammant\/tbd';
+    
+    </script>
+
+    <script src="https://trunkbaseddevelopment.ru/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+
+      var showHideRefs = document.getElementById("showHideRefs");
+      var refsElsewhereH1;
+      var refsTable;
+      if (showHideRefs) {
+          refsElsewhereH1 = document.getElementById("references-elsewhere");
+      }
+      if (showHideRefs) {
+          refsTable = refsElsewhereH1.nextElementSibling.nextElementSibling;
+          hideRefs();
+      }
+
+      function hideRefs() {
+          refsTable.style.display = "none";
+          showHideRefs.innerHTML = "show references";
+      }
+
+      function toggleRefs() {
+          if(refsTable.style.display == "block") {
+              hideRefs();
+          }
+          else {
+              refsTable.style.display = "block";
+              showHideRefs.innerHTML = "hide references";
+          }
+      }
+
+
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', '//www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-24415524-3', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

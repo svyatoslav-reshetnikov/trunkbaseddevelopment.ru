@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="ru-ru">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Ветвление по абстракции - Trunk Based Development</title>
+    <meta name="generator" content="Hugo 0.74.3" />
+
+    
+    <meta name="description" content="A portal on this practice">
+    
+    <link rel="canonical" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+    
+    <meta name="author" content="paul-hammant">
+    
+
+    <meta property="og:url" content="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+    <meta property="og:title" content="Trunk Based Development">
+    <meta property="og:image" content="https://trunkbaseddevelopment.ru/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Trunk Based Development">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot');
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.woff')
+               format('woff'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.ttf')
+               format('truetype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/application.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://trunkbaseddevelopment.ru/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-light-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Trunk Based Development: Ветвление по абстракции
+      </div>
+    </div>
+
+    
+
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <div class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://trunkbaseddevelopment.ru/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Trunk Based Development</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <hr>
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Введение" href="https://trunkbaseddevelopment.ru/">
+	
+	Введение
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Контекст" href="https://trunkbaseddevelopment.ru/context/">
+	
+	Контекст
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Краткий обзор" href="https://trunkbaseddevelopment.ru/5-min-overview/">
+	
+	Краткий обзор
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Определяющие факторы" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+	
+	Определяющие факторы
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Функции системы контроля версий" href="https://trunkbaseddevelopment.ru/vcs-features/">
+	
+	Функции системы контроля версий
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Version control system choices" href="https://trunkbaseddevelopment.ru/vcs-choices/">
+	
+	Version control system choices
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Флаги для функций" href="https://trunkbaseddevelopment.ru/feature-flags/">
+	
+	Флаги для функций
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Ветвление по абстракции" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+	
+	Ветвление по абстракции
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветка для релиза" href="https://trunkbaseddevelopment.ru/branch-for-release/">
+	
+	Ветка для релиза
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Релиз из ветки trunk" href="https://trunkbaseddevelopment.ru/release-from-trunk/">
+	
+	Релиз из ветки trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Styles and Trade-offs" href="https://trunkbaseddevelopment.ru/styles/">
+	
+	Styles and Trade-offs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Integration (CI)" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+	
+	Continuous Integration (CI)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Вливание кода напрямую в trunk" href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">
+	
+	Вливание кода напрямую в trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Short Lived Feature Branches" href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">
+	
+	Short Lived Feature Branches
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Code Review" href="https://trunkbaseddevelopment.ru/continuous-review/">
+	
+	Continuous Code Review
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Delivery (CD)" href="https://trunkbaseddevelopment.ru/continuous-delivery/">
+	
+	Continuous Delivery (CD)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Concurrent development of consecutive releases" href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">
+	
+	Concurrent development of consecutive releases
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application strangulation" href="https://trunkbaseddevelopment.ru/strangulation/">
+	
+	Application strangulation
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Observed habits" href="https://trunkbaseddevelopment.ru/observed-habits/">
+	
+	Observed habits
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="You&#39;re doing it wrong" href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/">
+	
+	You&#39;re doing it wrong
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Alternative branching models" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+	
+	Alternative branching models
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Monorepos" href="https://trunkbaseddevelopment.ru/monorepos/">
+	
+	Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Expanding Contracting Monorepos" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+	
+	Expanding Contracting Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Game Changers" href="https://trunkbaseddevelopment.ru/game-changers/">
+	
+	Game Changers
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Publications" href="https://trunkbaseddevelopment.ru/publications/">
+	
+	Publications
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Book on this topic" href="https://trunkbaseddevelopment.ru/book/">
+	
+	Book on this topic
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Key to branch diagrams" href="https://trunkbaseddevelopment.ru/key/">
+	
+	Key to branch diagrams
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Contributions" href="https://trunkbaseddevelopment.ru/contributions/">
+	
+	Contributions
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+
+        <ul>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd" target="_blank" title="See GitHub Repo">
+              Site Source on Github
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd/commit/" target="_blank">
+              SHA-1 Published: 
+            </a>
+          </li>
+          </li>
+<iframe id="buy" width='160' height='400' src='https://leanpub.com/trunk-based-development/embed' frameborder='0' allowtransparency='true'></iframe>
+          <li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1 style="color: white; padding: 32px 20px 72px; background-image:url(/public_html/images/LogoSlim.png); background-repeat: no-repeat; background-size: 100% auto"><span style="background-color: #5677fc">Ветвление по абстракции </span></h1>
+
+			<p>Ветвление по абстракции это комплексная техника, которая влияет на параметр &lsquo;время вливания написанного кода&rsquo; в trunk.
+Допустим, у разработчика (или пары разработчиков, если мы говорим про парное программирование), есть какая-то задача, выполнение которой займет 5 дней.
+В таком случчае, будет не очень удобно создавать ветку для такой большой задачи, т.к. где-то в основной ветке может быть баг или не очень хороший код,
+который будет исправлен в этой задаче, и это код будет доставлять неудобства остальным разработчикам 5 дней, пока делается задача.
+Дополнительные неудобства также могут возникнуть при вливании этого кода в trunk.</p>
+<p>Также могут возникнуть различные дублирующиеся действия, например написание дублирующего кода, что может увеличить сроки выполнения задачи и/или затраты ресурсов.
+Как бы то ни было, такое действие по определению является затратным по времени, сложным, дестабилизирующим/разрушительным для всех в команде разработки.</p>
+<p><strong>Правила:</strong></p>
+<ol>
+<li>У нас есть разработчики, которые зависят от &lsquo;времени вливания написанного кода&rsquo;, и мы ни в коем случае не хотим тормозить этим параметром их работу.</li>
+<li>Ни одно изменение кода, которое было отправлено в общий репозиторий, не должно ставить под угрозу возможность запуска кода иои готовность к релизу.</li>
+</ol>
+<h2 id="идеальные-шаги">Идеальные шаги</h2>
+<p>Для простоты предположим, что есть код, который &lsquo;существовал и был переписан&rsquo;, и код, который &lsquo;был написан с нуля&rsquo;.</p>
+<ol>
+<li>Напишите абстракцию вокруг кода, который необходимо заменить, и отправьте ее в общий репозиторий для того, чтобы все могли ее видеть.
+Если необходимо, сделайте это в несколько коммитов. Ни один из этих коммитов не должен ломать сборку,
+и все они могут быть отправлены в общий репозиторий по порядку и по готовности.</li>
+<li>Напишите вторую реализацию абстракции для кода, который был написан ранее, и также отправьте в общий репозиторий, но вам лучше написать эту реализацию таким образом, чтобы она была &ldquo;выключена&rdquo; и не влияла на работу других разработчиков в команде. При необходимости это может занять несколько коммитов, как указано выше. Абстракция из №1 также может иногда изменяться, но должна следовать тому же правилу - не ломать сборку.</li>
+<li>&ldquo;Включите&rdquo; написанную вами реализацию для остальной части команды и сделайте commit/push этого кода.</li>
+<li>Удалите заменяемую реализацию.</li>
+<li>Удалите абстракцию.</li>
+</ol>
+<p>Надеюсь, ваша команда использует среду IDE, которая может выполнять сложные рефакторинги для наборов проверок таким образом,
+чтобы запуск сборки после каждого из них был простой проверкой рефакторингов.</p>
+<h2 id="надуманный-пример">Надуманный пример</h2>
+<p>Давайте поговорим о машине, у которой модернизировали колеса. Мы никогда не должны забывать, что программная инженерия - это не что иное, как обычное строительство, и я хочу обратить на это ваше внимание. По крайней мере, это не что иное, как обычное строительство, в котором речь не идет о производственной линии.</p>
+<h3 id="правила">Правила</h3>
+<ol>
+<li>Механики должны уметь одновременно работать с обивкой, двигателем и т.д.</li>
+<li>Автомобиль должен сохранять работоспособность после каждого внесения изменений.</li>
+</ol>
+<h3 id="шаги">Шаги</h3>
+<p>Все шаги эффективно выполняются на домкратах/подъемниках/пандусах перед тем, как снова опустить автомобиль на землю.</p>
+<ol>
+<li>Одно колесо снимается и помещается в контейнер, который по функционалу является таким же колесом (вращается вокруг оси и выдерживает вес автомобиля),
+затем этот контейнер вставляется на место снятого колеса. При вождении этот контейнер функционирует так же, как и остальные три колеса.</li>
+<li>Колесоподобный контейнер содержит также второе колесо, которое мы хотели бы иметь в конечном счете, в точно таком же физическом пространстве (волшебным образом). Внутри автомобиля добавлен переключатель, чтобы можно было удобно переключать колеса - но это, наверное, лучше делать перед запуском двигателя.</li>
+<li>Повторите пп.1-2 для остальных трех колес. Или можно для всех колес поочередно сделать п.1, а потом п.2.
+Опыт механиков подскажет, что из этого является наиболее эффективным.</li>
+<li>Если мы поняли что новые колеса лучше, то старые колеса извлекаются из колесных контейнеров и отправляются на переработку.</li>
+<li>Колесоподобные контейнеры также снимаются с новых колес, по одному или все четыре одновременно.</li>
+</ol>
+<p>На любой стадии работ, если мы снимаем машину с домкрата/подъемника/пандуса, то она должна быть на ходу (метафора &lsquo;готов к работе&rsquo;).</p>
+<p><img src="cars.png" alt=""></p>
+<p>We said &lsquo;jacks&rsquo; above, because that&rsquo;s what mechanics use in real life. Software, however, does not follow the rules
+of gravity, or many of the costs of actual construction. With an IDE for a glove, a single finger could reposition
+the car in 3D space to allow easy replacement of the wheels.</p>
+<h2 id="пример-из-разработки-по">Пример из разработки ПО</h2>
+<p>Задокументированный случай - это CI-демон ThoughtWorks для Go. Они изменили библиотеку объектно-реляционного сопоставления (для персистентности), не замедляя при этом деятельность товарищей по команде (правило 1) и не ставя под угрозу работоспособность кода (правило 2).</p>
+<p>Они планировали перейти от «iBatis» к «Hibernate» по целому ряду причин, на которых мы не будем подробно останавливаться.</p>
+<p>Их действия:</p>
+<ol>
+<li>Написали абстракцию вокруг классов/компонентов, которые использовали iBatis напрямую, и убедились что все классы/компоненты, которые неявно ссылались на iBatis,
+виесто этого начали ссылаться на написанную абстракцию.</li>
+<li>Написали вторую реализацию абстракции, в которой ввели Hibernate в кодовую базу, при необходимости поправляя написанную абстракцию.</li>
+<li>Сделали небольшой коммит, который включал код с Hibernate для всех членов команды.</li>
+<li>Удалили iBatis, затем абстракцию, а затем и переключатель со старой реализации на новую.</li>
+</ol>
+<p>Как это часто бывает, вы можете оставить абстракцию в проекте если у вас есть unit тесты - абстракция может служить для них прослойкой, которую можно подменить
+и написать на нее тесты.</p>
+<h2 id="вторичные-преимущества">Вторичные преимущества</h2>
+<h3 id="очень-дешевая-возможность-приостановить-и-возобновить-работу-по-миграции-одной-реализации-на-другую">Очень дешевая возможность приостановить и возобновить работу по &ldquo;миграции&rdquo; одной реализации на другую</h3>
+<p>Переезд со старой реализации на новую может быть приостановлен и возобновлен позже в любой удобный момент. Это потому что сборка защищает вторую реализацию,
+которая не завершена. Это происходит достаточно просто из-за стадии компиляции, которая превращает абстракцию в объектный код где-то между первой и второй реализацией. Если есть unit тесты для этих двух реализаций, то жить становится еще проще.</p>
+<p>Если говорить про реальную работу, то у нас нет возможности возобновить приостановленную работу в удобный момент. Возможно экспоненциальное увеличение стоимости перезапуска работы если учитывать время, которое прошло с момента приостановки работы.</p>
+<p>Пауза и возобновление гораздо более вероятны в большой организации, занимающейся разработкой ПО, у которой нет безграничных запасов.</p>
+<h3 id="отмена-изменений-по-прежнему-дешевая">Отмена изменений по-прежнему дешевая</h3>
+<p>В случае отказа от новой реализации, удаление долгоживущей ветки, в которой выполнялась работа над новым функционалом, обходится дешевле, но метод удаления ветки по
+абстракции <em>чего-либо</em> дорожает не сразу, а  последовательно.</p>
+<h2 id="это-не-панацея">Это не панацея</h2>
+<p>Ветвление по абстрации подходит не для всех ситуаций с &ldquo;изменениями&rdquo;.</p>
+<p>Один из них это когда вам нужно поддерживать старые API и предыдущие релизы в течение очень короткого периода времени.
+Т.е. когда ваши зависимые клиенты (или отдельные клиентские приложения) могут иметь свой собственный момент обновления.</p>
+<p>Несколько лет назад команда KDE обдумывала свою стратегию выпуска 5.0, но при этом хотела параллельно иметь возможность делать изменениям в 4.0, чтобы не вповторять предыдущих ошибок<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://tech.slashdot.org/story/11/08/07/2128222/KDE-Frameworks-50-In-Development"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>.</p>
+<p>Some years ago the KDE team was mulling their release 5.0 strategy, and wanting to remain parallel to changes in 4.0, so as not to make
+mistakes that they had done
+previously<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://tech.slashdot.org/story/11/08/07/2128222/KDE-Frameworks-50-In-Development"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>. TODO: откатить назад.</p>
+<h2 id="специальный-сайт-по-этой-теме">Специальный сайт по этой теме</h2>
+<p>В начале 2018 года, был создан специальный сайт для дальнейшего изучения и продвижения этой концепции<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.branchbyabstraction.com"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>.</p>
+<h2 id="история">История</h2>
+<p>Команды использовали ветвление по абстракции задолго до того, как этот подход получил свое имя (Стейси Керл(Stacy Curl) упоминала про него в 2007 году),
+но когда была первая реализация - история про это умалчивает. Перед тем, как переходить на ветвление по абстракции, команды <strong>должны были</strong> сделать ветку для
+больших, длительных и ломающих изменений, или делать это с огромным количеством ухищрений типа:&ldquo;Привет всем, возьмите отпуск на неделю пока мы тут ломаем код&rdquo;.</p>
+<p>С техникой втевления по абстракции, вероятность того, что команда откажется от Trunk-Based Development в пользу разработки в долгоживущих ветках, очень сильно снижается.</p>
+<h1 id="внешние-ссылки">Внешние ссылки</h1>
+<p><!-- raw HTML omitted -->show references<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+
+
+			<aside class="copyright" role="note">
+				&copy; 2017-2020: <a href="https://devops.paulhammant.com/">Paul Hammant</a>. With Contributions <a href="https://trunkbaseddevelopment.ru/contributions/">from friends</a>.
+				Site built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				with
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme,
+				via <a href="https://netlify.com/">Netlify</a>. &nbsp;
+				<a href="https://github.com/paul-hammant/tbd/edit/master/content//_index.md">Contribute to this page</a>
+
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://trunkbaseddevelopment.ru/branch-for-release/" title="Ветка для релиза">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Ветка для релиза
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://trunkbaseddevelopment.ru/feature-flags/" title="Флаги для функций">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Флаги для функций
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/trunkbaseddevelopment.ru\/';
+      var repo_id  = 'paul-hammant\/tbd';
+    
+    </script>
+
+    <script src="https://trunkbaseddevelopment.ru/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+
+      var showHideRefs = document.getElementById("showHideRefs");
+      var refsElsewhereH1;
+      var refsTable;
+      if (showHideRefs) {
+          refsElsewhereH1 = document.getElementById("references-elsewhere");
+      }
+      if (showHideRefs) {
+          refsTable = refsElsewhereH1.nextElementSibling.nextElementSibling;
+          hideRefs();
+      }
+
+      function hideRefs() {
+          refsTable.style.display = "none";
+          showHideRefs.innerHTML = "show references";
+      }
+
+      function toggleRefs() {
+          if(refsTable.style.display == "block") {
+              hideRefs();
+          }
+          else {
+              refsTable.style.display = "block";
+              showHideRefs.innerHTML = "hide references";
+          }
+      }
+
+
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', '//www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-24415524-3', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

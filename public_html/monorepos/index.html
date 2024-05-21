@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="ru-ru">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Monorepos - Trunk Based Development</title>
+    <meta name="generator" content="Hugo 0.74.3" />
+
+    
+    <meta name="description" content="A portal on this practice">
+    
+    <link rel="canonical" href="https://trunkbaseddevelopment.ru/monorepos/">
+    
+    <meta name="author" content="paul-hammant">
+    
+
+    <meta property="og:url" content="https://trunkbaseddevelopment.ru/monorepos/">
+    <meta property="og:title" content="Trunk Based Development">
+    <meta property="og:image" content="https://trunkbaseddevelopment.ru/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Trunk Based Development">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot');
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.woff')
+               format('woff'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.ttf')
+               format('truetype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/application.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://trunkbaseddevelopment.ru/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-light-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Trunk Based Development: Monorepos
+      </div>
+    </div>
+
+    
+
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <div class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://trunkbaseddevelopment.ru/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Trunk Based Development</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <hr>
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Введение" href="https://trunkbaseddevelopment.ru/">
+	
+	Введение
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Контекст" href="https://trunkbaseddevelopment.ru/context/">
+	
+	Контекст
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Краткий обзор" href="https://trunkbaseddevelopment.ru/5-min-overview/">
+	
+	Краткий обзор
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Определяющие факторы" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+	
+	Определяющие факторы
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Функции системы контроля версий" href="https://trunkbaseddevelopment.ru/vcs-features/">
+	
+	Функции системы контроля версий
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Version control system choices" href="https://trunkbaseddevelopment.ru/vcs-choices/">
+	
+	Version control system choices
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Флаги для функций" href="https://trunkbaseddevelopment.ru/feature-flags/">
+	
+	Флаги для функций
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветвление по абстракции" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+	
+	Ветвление по абстракции
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветка для релиза" href="https://trunkbaseddevelopment.ru/branch-for-release/">
+	
+	Ветка для релиза
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Релиз из ветки trunk" href="https://trunkbaseddevelopment.ru/release-from-trunk/">
+	
+	Релиз из ветки trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Styles and Trade-offs" href="https://trunkbaseddevelopment.ru/styles/">
+	
+	Styles and Trade-offs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Integration (CI)" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+	
+	Continuous Integration (CI)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Вливание кода напрямую в trunk" href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">
+	
+	Вливание кода напрямую в trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Short Lived Feature Branches" href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">
+	
+	Short Lived Feature Branches
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Code Review" href="https://trunkbaseddevelopment.ru/continuous-review/">
+	
+	Continuous Code Review
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Delivery (CD)" href="https://trunkbaseddevelopment.ru/continuous-delivery/">
+	
+	Continuous Delivery (CD)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Concurrent development of consecutive releases" href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">
+	
+	Concurrent development of consecutive releases
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application strangulation" href="https://trunkbaseddevelopment.ru/strangulation/">
+	
+	Application strangulation
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Observed habits" href="https://trunkbaseddevelopment.ru/observed-habits/">
+	
+	Observed habits
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="You&#39;re doing it wrong" href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/">
+	
+	You&#39;re doing it wrong
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Alternative branching models" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+	
+	Alternative branching models
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Monorepos" href="https://trunkbaseddevelopment.ru/monorepos/">
+	
+	Monorepos
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Expanding Contracting Monorepos" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+	
+	Expanding Contracting Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Game Changers" href="https://trunkbaseddevelopment.ru/game-changers/">
+	
+	Game Changers
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Publications" href="https://trunkbaseddevelopment.ru/publications/">
+	
+	Publications
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Book on this topic" href="https://trunkbaseddevelopment.ru/book/">
+	
+	Book on this topic
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Key to branch diagrams" href="https://trunkbaseddevelopment.ru/key/">
+	
+	Key to branch diagrams
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Contributions" href="https://trunkbaseddevelopment.ru/contributions/">
+	
+	Contributions
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+
+        <ul>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd" target="_blank" title="See GitHub Repo">
+              Site Source on Github
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd/commit/" target="_blank">
+              SHA-1 Published: 
+            </a>
+          </li>
+          </li>
+<iframe id="buy" width='160' height='400' src='https://leanpub.com/trunk-based-development/embed' frameborder='0' allowtransparency='true'></iframe>
+          <li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1 style="color: white; padding: 32px 20px 72px; background-image:url(/public_html/images/LogoSlim.png); background-repeat: no-repeat; background-size: 100% auto"><span style="background-color: #5677fc">Monorepos </span></h1>
+
+			<p>A Monorepo is a specific Trunk-Based Development implementation where the organization in
+question puts its source for all applications/services/libraries/frameworks into one trunk and forces developers
+to commit together in that trunk - atomically.</p>
+<p>Google has the most famous monorepo and they do the above AND force teams to <strong>share code at source level instead of
+linking in previously built binaries</strong>. Specifically, they have no version numbers for their own dependencies, just an
+implicit &lsquo;HEAD&rsquo;. Indeed, because of lock step upgrades for all, releases from their monorepos mean &lsquo;HEAD&rsquo; <strong>is</strong> their
+effective version number. Third-party libraries (like JUnit) will be checked into the repo with a specific version number
+(like 4.11), and all teams will use that version if they use it at all.</p>
+<p>The deployment and/or release cadences for each application/service/library/frameworks will probably be different
+as will the team&rsquo;s structures, methodologies, priorities, story backlogs etc.</p>
+<p>The name &lsquo;monorepo&rsquo; is a newer name for a previously unnamed practice that is more than a decade old.</p>
+<p>Monorepo implementations deliver a couple of principal goals:</p>
+<ul>
+<li>Acquire as many third-party and in-house dependencies as possible for a build from the <strong>same</strong> source-control repository/branch, and in the
+same update/pull/sync operation.</li>
+<li>Keep all teams in agreement on the versions of third-party and in-house dependencies via lock-step upgrades.</li>
+</ul>
+<p>And some secondary goals:</p>
+<ul>
+<li>Allow changes to multiple modules via <strong>atomic commits</strong>.</li>
+<li>Allow the extraction of new common dependencies (from existing code) to be achieved in atomic commits.</li>
+<li>Force all developers to focus on the HEAD revisions of files in the trunk</li>
+<li>Allow bisecting towards the root cause of a prod bug to be effected on multiple (potentially dissimilar) modules at the same time</li>
+</ul>
+<p>Google and Facebook are the most famous organizations that rest development on a single company-wide trunk, that
+fits the monorepo design. Netflix and Uber (iOS application) disclosed in 2017 that they do too.</p>
+<div class="admonition warning">
+<p class="admonition-title">Risk of chaotic directory layout</p>
+<span>Google&rsquo;s co-mingled applications and services site within highly structured and uniform source trees. A Java
+developer from one project team instantly recognizes the directory structure for another team&rsquo;s application
+or service. That goes across languages too. The design for the directory layout needs to be enforced globally. You can
+see that in the way that Buck and Bazel layout trees for production and test code. If you
+cannot overhaul the directory structure of your entire repository, you should not entertain a monorepo.</span>
+</div>
+<br/>
+<h3 id="lock-step-deployments">Lock-step deployments?</h3>
+<p>OK, so it is really important to note in a monorepo, that you don&rsquo;t have to do a lock-step deployment of a buildable/releaseable thing just because a dependency was upgraded. What is certain is the next deployment of that application/service will
+contain the new dependency. &ldquo;Next&rdquo; is still a concern of the development team in
+question. Monorepos only say &ldquo;what&rdquo; will be released, not &ldquo;when&rdquo;.</p>
+<h2 id="third-party-dependencies">Third-party dependencies</h2>
+<p>With the monorepo model, there is a strong desire to have third-party binaries in source-control too.
+You might think that it would be unmanageable for reasons of size. In terms of commit history, Perforce and Subversion do not
+mind a terabyte of history of binary files (or more), and Git performed much better when Git-LFS was created. You
+could still feel that the HEAD revision of thousands of fine-grained dependencies is too much for a workstation, but
+that can be managed via an <a href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">expanding and contracting monorepo</a>.</p>
+<p>Note:  Python, Java, C++ and other SDKs are installed the regular way on the developer workstation, and not acquired
+from the source-control repository/branch.</p>
+<h2 id="in-house-dependencies">In-house dependencies</h2>
+<p>It could be that your application team depends on something that is made by colleagues from a different team. An
+example could be an Object Relational Mapping (ORM) library. For monorepo teams there is a strong wish to depend on
+the source of that ORM technology and not a binary. There are multiple reasons for that, but the principal one is that
+source control update/pull/sync is the most efficient way for you to keep up with the HEAD of a library on a minute
+by minute basis. Thus <code>MyTeamsApplication</code> and <code>TheORMweDepOn</code> should be in your source tree in your IDE at the same time.
+Similarly, another team that depends on <code>TheORMweDepOn</code> should have it and <code>TheirApplication</code> checked out at the same
+time.</p>
+<h2 id="directed-graph-build-systems">Directed graph build systems</h2>
+<p>To facilitate monorepos, it is important to have a build system that can omit otherwise buildable things/steps that are not
+required for the individual developer&rsquo;s <strong>current</strong> build intention.</p>
+<p>The general directory structure for directed graph build systems is like so:</p>
+<pre><code>root/
+  prod_code/
+    build_file.xml
+    (source files)
+    a_directory/
+      build_file
+      (source files)
+      another_directory/
+        build_file.xml
+        (source files)
+    yet_another_directory/
+      build_file.xml
+      (source files)
+  test_code/
+    build_file.xml
+    (source files)
+    a_directory/
+      build_file
+      (source files)
+      another_directory/
+        build_file.xml
+        (source files)
+    yet_another_directory/
+      build_file.xml
+      (source files)
+</code></pre><p>Obviously, YAML, JSON, TOML or custom grammars are alternatives to XML, for build files.</p>
+<h3 id="contrived-example">Contrived example</h3>
+<p>Two examples:</p>
+<ul>
+<li>I want to run impacted tests locally, relating to the hair-color field I just added to the person page of <code>MyTeamsApplication</code></li>
+<li>I want to run bring up <code>MyTeamsApplication</code> locally, so I can play with the hair-color field I just added to the person page</li>
+</ul>
+<p>Not only do you want to omit unnecessary directories/files from your build&rsquo;s activities, you probably also want to omit
+them from your IDE.</p>
+<h3 id="facebooks-buck-and-googles-bazel">Facebook&rsquo;s Buck and Google&rsquo;s Bazel</h3>
+<p>Google has Blaze internally. Ex-Googlers at Facebook (with newfound friends) missed that, wrote
+Buck<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://buckbuild.com"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> and then
+open-sourced it. Google then open-sourced a cut-down Blaze as Bazel<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://bazel.build"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>.
+These are the two (three including Blaze) directed graph build systems that allow a large tree of sources to be speedily
+subset in a compile/test/make-a-binary way.</p>
+<p>The omitting of unnecessary compile/test actions achieved by Buck and Bazel works equally well on developer workstations
+and in the CI infrastructure.</p>
+<p>There is also the ability to depend on recently compiled object code of colleagues. The recently compiled object code for
+provable permutations of sources/dependencies, that is. And that code plucked from the ether (think of a LRU cache available to all
+machines in the TCP/IP subnet). That is in place to shorten compile times for prod and test code.</p>
+<h2 id="recursive-build-systems">Recursive build systems</h2>
+<p>Java&rsquo;s Apache-Maven is the most widely used example. It&rsquo;s predecessor, Ant, is another. Maven more than Ant, pulls
+third-party binaries from &lsquo;binary repositories&rsquo;, caching them locally. Maven also traverses its tree in a strict
+depth first (then breadth) manner. Most recursive build systems can be configured to pull third-party dependencies
+from a relative directory in the monorepo. A binary dependency cache outside of the VCS controlled working copy,
+is more normal.</p>
+<p>The general directory structure for recursive build systems is like so:</p>
+<pre><code>root/
+  build_file.xml
+  module_one/
+    build_file.xml
+    src/
+      # prod source directory tree
+      # test source directory tree
+    module_two/
+      build_file.xml
+      src/
+        # prod source directory tree
+        # test source directory tree
+  module_three/
+    build_file.xml
+    src/
+      # prod source directory tree
+      # test source directory tree
+  src/
+    # prod source directory tree
+    # test source directory tree
+</code></pre><p>Again, YAML, JSON, TOML and custom grammars are alternatives to XML for build files.</p>
+<p>Recursive build systems mostly have the ability to choose a type of build. For example &lsquo;mvn test&rsquo; to just run tests,
+and not make a binary for distribution.</p>
+<h2 id="the-diamond-dependency-problem">The diamond dependency problem</h2>
+<p>What happens when two apps need a different version of a dependency?</p>
+<p>For in-house dependencies, where the source is in the same monorepo, then you will not have this situation, as the
+team that first wanted the increased functionality, performed it for all teams, keeping everyone at HEAD revision
+of it. The concept of version number disappears in this model.</p>
+<h3 id="third-party-dependencies-1">Third-party dependencies</h3>
+<p>For third-party dependencies, the same rule applies, everyone upgrades in lock-step. Problems can ensue, of course,
+if there are real reasons for team B to not upgrade and team A was insistent. Broken backward compatibility is
+one problem.</p>
+<p>In 2007, Google tried to upgrade their JUnit from 3.8.x to 4.x and struggled as there was a subtle
+backward incompatibility in a small percentage of their usages of it. The change-set became very large, and struggled
+to keep up with the rate developers were adding tests.</p>
+<p>Because you are doing lock-step upgrades, you only secondarily note the version of the third-party
+dependencies, as you check them into source control without version numbers in the filename.  I.e. JUnit goes in as
+<code>third_party/java_testing/junit.jar</code>.</p>
+<h2 id="clash-of-ideologies">Clash of ideologies</h2>
+<p>Above we contrasted <strong>directed graph</strong> and <strong>recursive</strong> build systems. The former are naturally compatible
+with expandable/contractible checkout technologies. The latter not necessarily so.</p>
+<h3 id="maven">Maven</h3>
+<p>Recursive build systems like maven, have a forward declaration of modules that should be built, like so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;modules&gt;</span>
+  <span style="color:#f92672">&lt;module&gt;</span>moduleone<span style="color:#f92672">&lt;/module&gt;</span>
+  <span style="color:#f92672">&lt;module&gt;</span>moduletwo<span style="color:#f92672">&lt;/module&gt;</span>
+<span style="color:#f92672">&lt;/modules&gt;</span>
+</code></pre></div><p>Presently, though, these build technologies do not have the ability to follow
+a changeable checkout that the likes of gcheckout can control.</p>
+<p>Directories <code>moduleone</code> and <code>moduletwo</code> have to exist in order for the build to work. The idea of expandable/contractible
+monorepos, is that trees of buildable things are <strong>calculated or computed</strong> not <strong>explicitly declared</strong>.
+In order to deliver that, you would need a feature to be added Maven like so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;modules&gt;</span>
+  <span style="color:#f92672">&lt;calculate/&gt;</span> <span style="color:#75715e">&lt;!--or--&gt;</span> <span style="color:#f92672">&lt;search/&gt;</span>
+<span style="color:#f92672">&lt;/modules&gt;</span>
+</code></pre></div><p>Or you could &ldquo;hack it&rdquo; and rewrite your pom.xml files after every expansion or
+contraction<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://paulhammant.com/2017/01/27/maven-in-a-google-style-monorepo/"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>.</p>
+<h2 id="if-you-decide-you-do-multiple-repos-instead-of-a-monorepo">If you decide you do multiple repos instead of a monorepo</h2>
+<p>In this case, the repository separation should be <strong>no more fine grained</strong> than the applications and services which have separate deployment cadences.</p>
+<p>Traditionally, when using microservices the result is exactly that case: a deployable microservice in its own repository. There is no reason why hundreds of microservices could not be in the same monorepo, but one repo per microservice is conventional with the microservices community.</p>
+<p>That said, Googlers have made Android Repo<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://source.android.com/setup/develop/repo"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> to deliver the best of both worlds. This technology works with Gerrit for code review. And there&rsquo;s a fork of that called Git-Repo<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://github.com/wavecomp/git-repo"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>, that has additional Git workflow features.</p>
+<p>Lastly, Microsoft in their movement away from legacy VCS choices and branching models, have made VFS For Git<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://github.com/microsoft/VFSForGit"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> which purports to solve many of the same scale problems of Git.</p>
+<h1 id="references-elsewhere">References elsewhere</h1>
+<p><!-- raw HTML omitted -->show references<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+
+
+			<aside class="copyright" role="note">
+				&copy; 2017-2020: <a href="https://devops.paulhammant.com/">Paul Hammant</a>. With Contributions <a href="https://trunkbaseddevelopment.ru/contributions/">from friends</a>.
+				Site built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				with
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme,
+				via <a href="https://netlify.com/">Netlify</a>. &nbsp;
+				<a href="https://github.com/paul-hammant/tbd/edit/master/content//_index.md">Contribute to this page</a>
+
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/" title="Expanding Contracting Monorepos">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Expanding Contracting Monorepos
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://trunkbaseddevelopment.ru/alternative-branching-models/" title="Alternative branching models">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Alternative branching models
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/trunkbaseddevelopment.ru\/';
+      var repo_id  = 'paul-hammant\/tbd';
+    
+    </script>
+
+    <script src="https://trunkbaseddevelopment.ru/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+
+      var showHideRefs = document.getElementById("showHideRefs");
+      var refsElsewhereH1;
+      var refsTable;
+      if (showHideRefs) {
+          refsElsewhereH1 = document.getElementById("references-elsewhere");
+      }
+      if (showHideRefs) {
+          refsTable = refsElsewhereH1.nextElementSibling.nextElementSibling;
+          hideRefs();
+      }
+
+      function hideRefs() {
+          refsTable.style.display = "none";
+          showHideRefs.innerHTML = "show references";
+      }
+
+      function toggleRefs() {
+          if(refsTable.style.display == "block") {
+              hideRefs();
+          }
+          else {
+              refsTable.style.display = "block";
+              showHideRefs.innerHTML = "hide references";
+          }
+      }
+
+
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', '//www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-24415524-3', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

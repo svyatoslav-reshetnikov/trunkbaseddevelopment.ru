@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="ru-ru">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Continuous Integration (CI) - Trunk Based Development</title>
+    <meta name="generator" content="Hugo 0.74.3" />
+
+    
+    <meta name="description" content="A portal on this practice">
+    
+    <link rel="canonical" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+    
+    <meta name="author" content="paul-hammant">
+    
+
+    <meta property="og:url" content="https://trunkbaseddevelopment.ru/continuous-integration/">
+    <meta property="og:title" content="Trunk Based Development">
+    <meta property="og:image" content="https://trunkbaseddevelopment.ru/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Trunk Based Development">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot');
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.woff')
+               format('woff'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.ttf')
+               format('truetype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/application.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://trunkbaseddevelopment.ru/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-light-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Trunk Based Development: Continuous Integration (CI)
+      </div>
+    </div>
+
+    
+
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <div class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://trunkbaseddevelopment.ru/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Trunk Based Development</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <hr>
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Введение" href="https://trunkbaseddevelopment.ru/">
+	
+	Введение
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Контекст" href="https://trunkbaseddevelopment.ru/context/">
+	
+	Контекст
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Краткий обзор" href="https://trunkbaseddevelopment.ru/5-min-overview/">
+	
+	Краткий обзор
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Определяющие факторы" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+	
+	Определяющие факторы
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Функции системы контроля версий" href="https://trunkbaseddevelopment.ru/vcs-features/">
+	
+	Функции системы контроля версий
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Version control system choices" href="https://trunkbaseddevelopment.ru/vcs-choices/">
+	
+	Version control system choices
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Флаги для функций" href="https://trunkbaseddevelopment.ru/feature-flags/">
+	
+	Флаги для функций
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветвление по абстракции" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+	
+	Ветвление по абстракции
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветка для релиза" href="https://trunkbaseddevelopment.ru/branch-for-release/">
+	
+	Ветка для релиза
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Релиз из ветки trunk" href="https://trunkbaseddevelopment.ru/release-from-trunk/">
+	
+	Релиз из ветки trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Styles and Trade-offs" href="https://trunkbaseddevelopment.ru/styles/">
+	
+	Styles and Trade-offs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Continuous Integration (CI)" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+	
+	Continuous Integration (CI)
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Вливание кода напрямую в trunk" href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">
+	
+	Вливание кода напрямую в trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Short Lived Feature Branches" href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">
+	
+	Short Lived Feature Branches
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Code Review" href="https://trunkbaseddevelopment.ru/continuous-review/">
+	
+	Continuous Code Review
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Delivery (CD)" href="https://trunkbaseddevelopment.ru/continuous-delivery/">
+	
+	Continuous Delivery (CD)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Concurrent development of consecutive releases" href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">
+	
+	Concurrent development of consecutive releases
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application strangulation" href="https://trunkbaseddevelopment.ru/strangulation/">
+	
+	Application strangulation
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Observed habits" href="https://trunkbaseddevelopment.ru/observed-habits/">
+	
+	Observed habits
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="You&#39;re doing it wrong" href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/">
+	
+	You&#39;re doing it wrong
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Alternative branching models" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+	
+	Alternative branching models
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Monorepos" href="https://trunkbaseddevelopment.ru/monorepos/">
+	
+	Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Expanding Contracting Monorepos" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+	
+	Expanding Contracting Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Game Changers" href="https://trunkbaseddevelopment.ru/game-changers/">
+	
+	Game Changers
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Publications" href="https://trunkbaseddevelopment.ru/publications/">
+	
+	Publications
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Book on this topic" href="https://trunkbaseddevelopment.ru/book/">
+	
+	Book on this topic
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Key to branch diagrams" href="https://trunkbaseddevelopment.ru/key/">
+	
+	Key to branch diagrams
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Contributions" href="https://trunkbaseddevelopment.ru/contributions/">
+	
+	Contributions
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+
+        <ul>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd" target="_blank" title="See GitHub Repo">
+              Site Source on Github
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd/commit/" target="_blank">
+              SHA-1 Published: 
+            </a>
+          </li>
+          </li>
+<iframe id="buy" width='160' height='400' src='https://leanpub.com/trunk-based-development/embed' frameborder='0' allowtransparency='true'></iframe>
+          <li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1 style="color: white; padding: 32px 20px 72px; background-image:url(/public_html/images/LogoSlim.png); background-repeat: no-repeat; background-size: 100% auto"><span style="background-color: #5677fc">Continuous Integration (CI) </span></h1>
+
+			<div class="admonition quote">
+<p class="admonition-title">individuals practice Trunk-Based Development, and teams practice CI</p>
+<span style="padding-left: 15px">— <em>Agile</em> Steve Smith</span>
+</div>
+<br/>
+<h2 id="continuous-integration---as-defined">Continuous Integration - as defined</h2>
+<p>For many years CI has been accepted by a portion of software development community to mean a daemon process
+that is watching the source-control repository for changes and verifying that they are correct, <strong>regardless
+of branching model</strong>.</p>
+<p>However, the original intention was to focus on the verification <strong>single integration point</strong>
+for the developer team. And do it daily if not more. The idea was for developers themselves to develop
+habits to ensure everything going to that shared place many times a day was of high enough quality,
+and for the CI server to merely verify that quality, nightly.</p>
+<p>CI as we know it today was championed by Kent Beck, as one of the practices he included in
+&ldquo;Extreme Programming&quot;<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://en.wikipedia.org/wiki/Extreme_programming"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>
+in the mid-nineties. Certainly in 1996, on the famous &lsquo;Chrysler Comprehensive Compensation System&rsquo; (C3)
+project<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://en.wikipedia.org/wiki/Chrysler_Comprehensive_Compensation_System"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> that Kent had all
+developers experiencing and enjoying the methodology - including the continuous integration aspect. The language for
+that project was Smalltalk and the single integration point was a Smalltalk image
+(a technology more advanced than a &ldquo;mere&rdquo; source-control systems that rule today).</p>
+<p>Thus, the intention of CI, as defined, was pretty much exactly the same as Trunk-Based Development, that emerged
+elsewhere. Trunk-Based Development did not say anything about Continuous Integration daemons directly or indirectly,
+but there is an overlap today - the safety net around a mere branching model (and a bunch of techniques) is greatly
+valued.</p>
+<p>Martin Fowler (with Matt Foemmel) called out Continuous Integration in an article in
+2000<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.martinfowler.com/articles/originalContinuousIntegration.html"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>,
+(rewritten in 2006<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.martinfowler.com/articles/continuousIntegration.html"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>), and
+ThoughtWorks colleagues went on to build the then-dominant &ldquo;Cruise Control&quot;<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://cruisecontrol.sourceforge.net"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>
+in early 2001. Cruise Control co-located the CI configuration on the branch being built next to the build script, as it
+should be.</p>
+<h2 id="integration-human-actions">Integration: Human actions</h2>
+<p>It is important to note that the build script which developers run prior to checking in, is the <strong>same one</strong> which is
+followed by the CI service (see below). The build is broken into gated steps due to a need for succinct communication to
+you the developer as well as teammates. The classic steps would be: compile, test-compile, unit test invocation, service test
+invocation, functional test invocation. Those last two are part of the integration tests class.</p>
+<p>If the build passed on the developer’s workstation, and the code is up to date with HEAD of what the team sees for
+trunk, then the developer checks in the work (commit and push for Git). Where that goes to depends on which way of working
+the team is following. Some smaller teams will push straight to trunk, and may do so multiple times a day (see <a href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">Committing
+straight to the trunk</a>). Larger teams may push to a patch-review system, or use <a href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">short-lived feature branches</a>, even though this can be an impediment to throughput.</p>
+<h2 id="ci-services-bots-verifying-human-actions">CI services: Bots verifying human actions</h2>
+<p>Every development team bigger than three people needs a CI daemon to guard the codebase against bad commits and timing mistakes.
+Teams have engineered build scripts which execute quickly. This should apply from compilation through functional
+testing (perhaps leveraging mocking at several levels) and packaging. However, there is no guarantee that a developer would run the build script before
+committing. The CI daemon fulfils that role by verifying commits to be good once they land in the trunk. Enterprises
+have either built a larger scaled capability around their CI technology, so that it can keep up with the commits/pushes
+of the whole team or they use batching of commits which takes up less computing power to track and verify work.</p>
+<h3 id="radiators">Radiators</h3>
+<p>A popular
+radiator-style visual indication of progress would be those shown as a left-to-right series of Green (passing) or Red
+(failing) icons/buttons with a suitably short legend:</p>
+<p><img src="pipelines1.png" alt=""></p>
+<p>This should go up on TVs if developers are co-located. It should also be a click through from notification emails.</p>
+<h3 id="quick-build-news">Quick build news</h3>
+<p>The elapsed time between the commit and the &ldquo;this commit broke the build&rdquo; notification, is key. That is because the cost
+to repair things in the case of a build breakage goes up when additional commits have been pushed to the branch. One of the
+facets of the &lsquo;distance&rsquo; that we want to reduce (refer <a href="https://trunkbaseddevelopment.ru/5-min-overview/">five-minute overview</a>) is the distance to break.</p>
+<h3 id="pipelines---further-reading">Pipelines - further reading</h3>
+<p>Note: Continuous Integration Pipelines are better described in the bestselling
+<a href="https://trunkbaseddevelopment.ru/publications/index.html#continuous-delivery-july-27-2010">Continuous Delivery</a> book. So are dozens of nuanced,
+lean inspired concepts for teams pushing that far.</p>
+<h2 id="advanced-ci-topics">Advanced CI topics</h2>
+<h3 id="ci-service-builds-per-commit-or-batching">CI service builds per commit or batching?</h3>
+<p>Committing/pushing directly to the shared trunk may be fine for teams with only a few
+commits a day. Fine too for teams that only have a few developers who trust each other to be rigorous on their
+workstation before committing (as it was for everyone in the 90&rsquo;s).</p>
+<p>Setups having the CI server single threading on builds and the notification cycle around pass/fail will
+occasion lead to the <strong>batching</strong> in a CI job. This is not a big problem for small teams. Batching is where one build is
+verifying two or more commits in one go. It is not going to be hard to pick
+apart a batch of two or three to know which one caused the failure. You can believe that with confidence because of the
+high probability the two commits were in different sections of the code base and are almost never entangled.</p>
+<p>If teams are bigger, though, with more commits a day then pushing something incorrect/broken to trunk could be disruptive to
+the team. Having the CI daemon deal with <strong>every commit</strong> separately is desirable. If the CI daemon is single-threading &ldquo;jobs&rdquo; there is a risk
+that the thing could fall behind.</p>
+<h4 id="master--slave-ci-infrastructure">Master / Slave CI infrastructure</h4>
+<p>More advanced CI Server configurations have a master and many slaves setup so
+that build jobs can be parallelized. That&rsquo;s more of an investment than the basic setup, and but is getting easier and
+easier in the modern era with evolved CI technologies and services.</p>
+<p>The likes of Docker means that teams can have build environments that are perfectly small representations of
+prod infra for the purposes of testing.</p>
+<h4 id="tests-are-never-green-incorrectly">Tests are never green incorrectly.</h4>
+<p>Well written tests, that is - <em>there are fables of suites of 100% passing unit tests with no assertions in the early 2000&rsquo;s</em>.</p>
+<p>Some teams focus 99.9% of their QA automation on functional correctness. You might note that for
+a parallelized CI-driven <em>ephemeral</em> testing infrastructure, that response times for pages are around 500ms, where the
+target for production is actually 100ms. Your functional tests are not going to catch that and fail - they&rsquo;re going to pass.
+If you had non-functional tests too (that 0.1% case) then you might catch that as a problem. Maybe it is best to move
+such non-functional automated tests to a later pipeline phase, and be pleased that so many functional tests can run
+through so quickly and cheaply and often, on elastic (albeit ephemeral) CI infrastructure.</p>
+<p>Here is a claim: Tests are never green (passing) incorrectly. The inverse - a test failing when the prod code it
+is verifying actually good - is common. QA automators are eternally fixing (somehow) smaller numbers of flakey tests.</p>
+<p>A CI build that is red/failing often, or an overnight CI job that tests everything that happened in the day - and is
+always a percentage failing is of greatly reduced value.</p>
+<p>A regular CI build that by some definition is comprehensive, well written and <strong>always green</strong> unless there&rsquo;s a genuine
+issue is extremely valuable.</p>
+<p>Once you get to that trusted always green state, it is natural to run it as often as you can.</p>
+<h3 id="ci-pre-or-post-commit">CI Pre or Post Commit?</h3>
+<p>In terms of breakages, whether incorrect (say &lsquo;badly formatted&rsquo;), or genuinely broken, finding that out <strong>after the
+commit</strong> is undesirable. Fixing things while the rest of the team watches or waits is a team-throughput
+lowering practice.</p>
+<p><img src="ci_types.png" alt=""></p>
+<p>Yellow = automated steps, Red = a potential to break build for everyone</p>
+<p>Note: for committing/pushing straight to the shared trunk, code review and CI verification can happen in parallel. Most
+likely though is reviews happening after the CI daemon has cast its vote on the quality of the commit(s).</p>
+<p>Better setups have code-review and CI verification before the commit lands in the trunk for all to see:</p>
+<p><img src="ci_types2.png" alt=""></p>
+<p>It is best to have a human agreement (the code review), and machine agreement (CI verification) before the commit lands in
+the trunk.  There is still room for error based on timing, so CI needs to happen a second time <strong>after</strong> the push to the shared
+trunk, but the chance of the second build failing so small that an automated revert/roll-back is probably the best way
+to handle it (and a notification).</p>
+<h3 id="the-high-bar-today">The high bar, today</h3>
+<p>Highest throughput teams have CI server setups that prevent breakage of the trunk. That means that commits are verified
+before they land in the trunk to the extent where teammates can update/sync/pull.</p>
+<p>The problem this solves is when the rate of commit into the trunk would be too high to have an auto-rollback on build
+failure. In Google one commit lands in the trunk every 30 seconds. Few CI technologies (and source control systems) can
+keep up with that in a way that is not batching (to some degree of interpretation). You&rsquo;d be stopping the line too often
+for humans to make sense of a train wreck of red builds, where only one two were actual breakages rather than just bad
+timing.</p>
+<p>It would not be computationally hard
+to recreate a last-green-plus-this-commit contrived HEAD to verify a commit in isolation to the other 20 that arrived in
+the last ten minutes, but that would be a crazy amount of computing power to do so. Better to marshal the pending
+commit in a place where it looks like it is immediately following a previously known green (passing) commit and is not yet on
+the shared trunk.</p>
+<p>That place has a name - a branch (or a branch of a fork the GitHub way). It is a perfect place to CI verify the commit
+before auto-merging it to the shared trunk (if you want to auto-merge after code review approvals).</p>
+<p>The new problem is how do you prevent that <a href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">short-lived feature branch</a> from sleepwalking into a long-lived feature
+branch with half a dozen developers keeping it from being &lsquo;complete&rsquo; (somehow) and merged back. You cannot with tools
+today, but it would be cool if you could have a ticking clock or count down on those branches at creation to enforce
+its &lsquo;temporary&rsquo; intention.</p>
+<p>Refer to <a href="https://trunkbaseddevelopment.ru/game-changers/index.html#google-s-internal-devops-2006-onwards">Game Changers - Google Home Grown CI and Tooling</a> for more
+information on the high commit rate CI stuff. Note too that they do not have a temp branch set up to facilitate that.</p>
+<h2 id="industry-ci-daemon-confusion">Industry CI daemon confusion</h2>
+<p>ThoughtWorks commissioned a survey - &ldquo;No One Agrees How to Define CI or CD&quot;<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://blog.snap-ci.com/blog/2016/07/26/continuous-delivery-integration-devops-research"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>.<br>
+That the hypothesis of Continuous Integration being thought of as compatible with branching models other than Trunk-Based Development
+was, unfortunately, shown to be true. Their chief scientist, Martin Fowler, writes about the general effect in his &ldquo;Semantic Diffusion&rdquo;
+article<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://martinfowler.com/bliki/SemanticDiffusion.html"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>.</p>
+<p>Martin also wrote specifically on the
+lamentable <em>pat on the back</em> that multi-active-branch teams give themselves when they set up a CI server/daemon for one
+or all of those branches: &ldquo;Continuous Integration Certification&rdquo;
+<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://martinfowler.com/bliki/ContinuousIntegrationCertification.html"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> and within that <em>a great
+coin</em> &ldquo;Daemonic Continuous Integration&rdquo; for this effect.</p>
+<div class="admonition note">
+<p class="admonition-title">This site&#39;s use of CI and Trunk-Based Development</p>
+<span>Given other popular branching models (that are not Trunk-Based Development) <strong>also</strong> benefit from CI servers watching
+for and verifying commits, this site is going to refer to the commit to a *<em>enforced single shared source-control branch</em>
+practice as Trunk-Based Development.</span>
+</div>
+<p>There are many CI technologies and services available for teams to use. Some are free, and some are open source.
+Some store the configuration for a pipeline in VCS, and some store it somewhere else. In order to more smoothly support
+<a href="https://trunkbaseddevelopment.ru/branch-for-release/">branch for release</a>, the best CI solutions co-locate the configuration for a pipeline in the same
+branch too.</p>
+<h2 id="serverdaemon-implementations">Server/daemon implementations</h2>
+<ul>
+<li>Jenkins<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://jenkins.io"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> commercial service, for Jenkins Open Source<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://github.com/jenkinsci"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - on-premises installable</li>
+<li>Travis-CI<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://travis-ci.org"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - cloud</li>
+<li>Circle-CI<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://circleci.com"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - cloud</li>
+<li>ThoughtWorks&rsquo; Go CD<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.gocd.io"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - cloud and on-premises install</li>
+<li>Codeship<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://codeship.com"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - cloud</li>
+<li>Atlassian&rsquo;s Bamboo<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.atlassian.com/software/bamboo"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - on-premises install</li>
+<li>JetBrains&rsquo; TeamCity<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.jetbrains.com/teamcity"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - on-premises install</li>
+<li>Microsoft&rsquo;s TFS platform<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.visualstudio.com/tfs"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - on-premises install (built into larger platform)</li>
+</ul>
+<p>Note, for Jenkins, you can now use Pipeline DSL scripts (or Groovy) <span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://jenkins.io/doc/book/pipeline/"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> (formerly Workflow), or you can use Jenkins with GroupOn&rsquo;s DotCI<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://github.com/groupon/DotCi"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> to co-locate the config
+with the thing being built/verified in source-control.</p>
+<h1 id="references-elsewhere">References elsewhere</h1>
+<p><!-- raw HTML omitted -->show references<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+
+
+			<aside class="copyright" role="note">
+				&copy; 2017-2020: <a href="https://devops.paulhammant.com/">Paul Hammant</a>. With Contributions <a href="https://trunkbaseddevelopment.ru/contributions/">from friends</a>.
+				Site built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				with
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme,
+				via <a href="https://netlify.com/">Netlify</a>. &nbsp;
+				<a href="https://github.com/paul-hammant/tbd/edit/master/content//_index.md">Contribute to this page</a>
+
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/" title="Вливание кода напрямую в trunk">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Вливание кода напрямую в trunk
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://trunkbaseddevelopment.ru/styles/" title="Styles and Trade-offs">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Styles and Trade-offs
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/trunkbaseddevelopment.ru\/';
+      var repo_id  = 'paul-hammant\/tbd';
+    
+    </script>
+
+    <script src="https://trunkbaseddevelopment.ru/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+
+      var showHideRefs = document.getElementById("showHideRefs");
+      var refsElsewhereH1;
+      var refsTable;
+      if (showHideRefs) {
+          refsElsewhereH1 = document.getElementById("references-elsewhere");
+      }
+      if (showHideRefs) {
+          refsTable = refsElsewhereH1.nextElementSibling.nextElementSibling;
+          hideRefs();
+      }
+
+      function hideRefs() {
+          refsTable.style.display = "none";
+          showHideRefs.innerHTML = "show references";
+      }
+
+      function toggleRefs() {
+          if(refsTable.style.display == "block") {
+              hideRefs();
+          }
+          else {
+              refsTable.style.display = "block";
+              showHideRefs.innerHTML = "hide references";
+          }
+      }
+
+
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', '//www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-24415524-3', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

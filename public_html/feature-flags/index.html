@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="ru-ru">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Флаги для функций - Trunk Based Development</title>
+    <meta name="generator" content="Hugo 0.74.3" />
+
+    
+    <meta name="description" content="A portal on this practice">
+    
+    <link rel="canonical" href="https://trunkbaseddevelopment.ru/feature-flags/">
+    
+    <meta name="author" content="paul-hammant">
+    
+
+    <meta property="og:url" content="https://trunkbaseddevelopment.ru/feature-flags/">
+    <meta property="og:title" content="Trunk Based Development">
+    <meta property="og:image" content="https://trunkbaseddevelopment.ru/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Trunk Based Development">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot');
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.woff')
+               format('woff'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.ttf')
+               format('truetype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/application.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://trunkbaseddevelopment.ru/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-light-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Trunk Based Development: Флаги для функций
+      </div>
+    </div>
+
+    
+
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <div class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://trunkbaseddevelopment.ru/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Trunk Based Development</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <hr>
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Введение" href="https://trunkbaseddevelopment.ru/">
+	
+	Введение
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Контекст" href="https://trunkbaseddevelopment.ru/context/">
+	
+	Контекст
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Краткий обзор" href="https://trunkbaseddevelopment.ru/5-min-overview/">
+	
+	Краткий обзор
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Определяющие факторы" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+	
+	Определяющие факторы
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Функции системы контроля версий" href="https://trunkbaseddevelopment.ru/vcs-features/">
+	
+	Функции системы контроля версий
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Version control system choices" href="https://trunkbaseddevelopment.ru/vcs-choices/">
+	
+	Version control system choices
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Флаги для функций" href="https://trunkbaseddevelopment.ru/feature-flags/">
+	
+	Флаги для функций
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветвление по абстракции" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+	
+	Ветвление по абстракции
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветка для релиза" href="https://trunkbaseddevelopment.ru/branch-for-release/">
+	
+	Ветка для релиза
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Релиз из ветки trunk" href="https://trunkbaseddevelopment.ru/release-from-trunk/">
+	
+	Релиз из ветки trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Styles and Trade-offs" href="https://trunkbaseddevelopment.ru/styles/">
+	
+	Styles and Trade-offs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Integration (CI)" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+	
+	Continuous Integration (CI)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Вливание кода напрямую в trunk" href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">
+	
+	Вливание кода напрямую в trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Short Lived Feature Branches" href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">
+	
+	Short Lived Feature Branches
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Code Review" href="https://trunkbaseddevelopment.ru/continuous-review/">
+	
+	Continuous Code Review
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Delivery (CD)" href="https://trunkbaseddevelopment.ru/continuous-delivery/">
+	
+	Continuous Delivery (CD)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Concurrent development of consecutive releases" href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">
+	
+	Concurrent development of consecutive releases
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application strangulation" href="https://trunkbaseddevelopment.ru/strangulation/">
+	
+	Application strangulation
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Observed habits" href="https://trunkbaseddevelopment.ru/observed-habits/">
+	
+	Observed habits
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="You&#39;re doing it wrong" href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/">
+	
+	You&#39;re doing it wrong
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Alternative branching models" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+	
+	Alternative branching models
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Monorepos" href="https://trunkbaseddevelopment.ru/monorepos/">
+	
+	Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Expanding Contracting Monorepos" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+	
+	Expanding Contracting Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Game Changers" href="https://trunkbaseddevelopment.ru/game-changers/">
+	
+	Game Changers
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Publications" href="https://trunkbaseddevelopment.ru/publications/">
+	
+	Publications
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Book on this topic" href="https://trunkbaseddevelopment.ru/book/">
+	
+	Book on this topic
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Key to branch diagrams" href="https://trunkbaseddevelopment.ru/key/">
+	
+	Key to branch diagrams
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Contributions" href="https://trunkbaseddevelopment.ru/contributions/">
+	
+	Contributions
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+
+        <ul>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd" target="_blank" title="See GitHub Repo">
+              Site Source on Github
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd/commit/" target="_blank">
+              SHA-1 Published: 
+            </a>
+          </li>
+          </li>
+<iframe id="buy" width='160' height='400' src='https://leanpub.com/trunk-based-development/embed' frameborder='0' allowtransparency='true'></iframe>
+          <li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1 style="color: white; padding: 32px 20px 72px; background-image:url(/public_html/images/LogoSlim.png); background-repeat: no-repeat; background-size: 100% auto"><span style="background-color: #5677fc">Флаги для функций </span></h1>
+
+			<p>Флаги для функций (feature Flags) это проверенный временем способ, позволяющий контролировать возможности приложения или сервиса самым решительным образом.</p>
+<h3 id="пример">Пример</h3>
+<p>Допустим, у вас есть приложение или сервис, который запускается из командной строки, и у него есть <code>main</code> метод или функция. Вашим флагом функции может быть <code>--withOneClickPurchase</code>, который вы отправляете в качестве аргумента в командную строку. Этот флаг активирует те строчки кода в приложении, которые реализуют функцию покупки в один клик от Amazon. Без этого аргумента командной строки приложение будет отображать корзину с товарами. Не будем вдаваться в подробности - допустим что разработчики решили сделать именно такую логику приложения. Скорей всего, &lsquo;покупка в один клин&rsquo; и &lsquo;корзина с товарами&rsquo; на языке бизнеса будет называться точно так же. Все усложняется тем, что эти флаги не обязательно должно быть реализованы как a/b тест или новый/старый функционал - эти функции могут дополнять или подменять друг друга. В нашем примере, может быть нужна возможность сделать <code>--allowUsersToUseShoppingCartInsteadOfOneClick</code>. Как вы видите, флаги могут подменять друг друга.</p>
+<div class="admonition note">
+<p class="admonition-title">Флаги это Переключатели</p>
+<span>Светило индустрии, Мартин Фаулер, называет эту технику &lsquo;переключатели функций&rsquo;, и дал им фундаментальное определение (см.ссылки ниже). Тем не менее, в индустрии чаще фигурирует название флаги функций (feature flags), поэтому далее мы будем использовать именно это название.</span>
+</div>
+<h2 id="атомарность">Атомарность</h2>
+<p>Может быть и так, что один флаг управляет чем-то большим, например пользовательским интерфейсом какого-то компонента. В примере выше мы определили, что <code>OneClickPurchasing</code> и <code>ShoppingCart</code> это названия компонентов. Возможно, степень атомарности флага должна быть меньше. Допустим, американцы хотят видеть температуру в фаренгейтах, а другие народы в градусах цельсия. У нас может быть флаг <code>--temp=F</code> и <code>--temp=C</code>. Разработчики для прикола могут также добавить температуру в кельвинах <code>--temp=K</code>.</p>
+<h2 id="реализация">Реализация</h2>
+<p>Для <code>OneClickPurchasing</code> и <code>ShoppingCart</code> вариантов может быть создана абстракция <code>PurchasingCompleting</code>. Затем на начальном этапе загрузки, который контролируется кодом, флаг <code>--withOneClickPurchase</code> будет влиять на:</p>
+<p>Java, вручную:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">if</span> args<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;--withOneClickPurchase&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  purchasingCompleting <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> OneClickPurchasing<span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Внедрение зависимости в Java через настройку:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">bootContainer<span style="color:#f92672">.</span><span style="color:#a6e22e">addComponent</span><span style="color:#f92672">(</span>classFromName<span style="color:#f92672">(</span>config<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;purchasingCompleting&#34;</span><span style="color:#f92672">)));</span>
+</code></pre></div><p>В общем, есть много путей передать флаг (или любой другой конфиг) в среду выполнения. Если вы можете, то вам лучше избегать if/else конструкций в коде в том месте, где происходит выбор того, какую часть кода делать активной. Отсюда наш акцент на абстракцию.</p>
+<h2 id="процесс-continuous-integration">Процесс Continuous Integration</h2>
+<p>Важно, чтобы CI был бдительным при всех ваших ощутимых и ожидаемых изменениях флагов. Это означает, что тесты, которые прогоняются в приложении или сервисе после запуска, должны адаптироваться и проверять то, на что влияют изменения флагов. Это также означает, что с точки зрения процессов CI существует разветвление <strong>после</strong> unit тестов для каждого ощутимого изменения флага. Грубый пример - запускать весь процесс CI параллельно для каждого ощутимого изменения флагов.
+Это будет означать, что каждое вливание кода в trunk запускает более одной сборки - надеюсь, из гибкой инфраструктуры.</p>
+<h2 id="переключаемое-состояние-во-время-выполнения-программы">Переключаемое состояние во время выполнения программы</h2>
+<p>Иногда флагов, заданных при запуске приложения, недостаточно. Допустим, вы авиакомпания, продающая билеты на рейсы через Интернет. Вы также можете сдавать автомобили в аренду в сотрудничестве с партнером, скажем, «Really Cool Rental Cars» (RCRC). Подключение к любому партнеру или проверка текущего статуса его системы находится вне вашего контроля, поэтому вам может потребоваться переключатель в программном обеспечении, который работает без перезапуска, чтобы включить или выключить &ldquo;резервирование партнеров RCRC&rdquo; и дать возможность группе поддержки переключить его, если определенные условия &ldquo;Runbook&rdquo; были соблюдены. В этом случае конечные пользователи могут не заметить, все ли Hertz, Avis, Enterprise и т.д. (сервисы проката автомобилей - прим. пер.) находятся в предложениях для этого аэропорта во время прибытия рейса.</p>
+<p>Ключевым моментом для переключаемых флагов во время выполнения является необходимость сохранения состояния. При перезапуске приложения или службы не следует возвращать этот флаг по умолчанию - он должен сохранить предыдущее значение. Все усложняется когда вам нужно чтобы флаг пронизывал несколько узлов в кластере горизонтально масштабируемых родственных процессов. Для этого случая существует современный способ фиксации состояние флага в Consul<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.consul.io"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>, Etcd<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://github.com/coreos/etcd%20"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> или его эквиваленте.</p>
+<h2 id="флаги-сборки">Флаги сборки</h2>
+<p>Флаги сборки влияют на приложение или службу в процессе ее сборки. Что касается флага <code>--withOneClickPurchase</code>, то приложение не сможет во время выполнения иметь эту возможность, если каким-то образом во время сборки подходящий флаг не был задан.</p>
+<h2 id="ab-тестирование-и-бета-версии">A/B тестирование и бета версии</h2>
+<p>Отправка кода, который выключен в рабочей среде, позволяет вам включить его по разным причинам - например, вы хотите чтобы какая-то часть пользователей явно или не явно проверила его. A/B тестирование (которое так любит маркетинг) возможно с флагами, которые могут менчть свое значение во время работы программы. Таким образом, есть бета версии функционала/отдельных функций, которые доступных для определенных групп пользователей.</p>
+<h2 id="технический-долг---это-ловушка">Технический долг - это ловушка</h2>
+<p>Флаги со временем копятся в кодовые базы и часто забываются, когда команды разработчиков стремятся к новым бизнес-результатам. Конечно, вы хотите подождать некоторое время, пока не станет ясно, что вы поняли какое именно состояние флага вам подходит лучше всего, и именно в этом проблема - приложение отлично работает с флагом, оставленным на месте, и бизнес действительно заботится только о новых приоритетах. Единственное спасение - это то, что у вас были unit тесты для всего, даже для кода, который фактически отключен в производственной среде. Постарайтесь договориться с бизнесом разрешить удаление флагов (и кода, к которому они применяются) через месяц после выпуска. Может быть, добавить их в README проекта с датой «проверки на удаление».</p>
+<h2 id="история">История</h2>
+<p>Некоторые исторические предшественники переключателей/флагов функций, какими мы их знаем сегодня:</p>
+<ul>
+<li>нифицированное управление версиями с помощью логики функций (Andreas Zeller and Gregor Snelting, 1996)<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://www.cs.tufts.edu/~nr/cs257/archive/andreas-zeller/tr-96-01.pdf"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - официальная публикация.</li>
+<li>Управление конфигурацией с наборами версий: унифицированная модель управления версиями программного обеспечения и ее приложений (Andreas Zeller&rsquo;s, 1997)<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://www.st.cs.uni-saarland.de/publications/files/zeller-thesis-1997.pdf"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - Ph.D. тезис.</li>
+</ul>
+<p>Также есть предупреждение:</p>
+<ul>
+<li>&ldquo;#ifdef считается вредным&rdquo; (Henry Spencer and Geoff Collyer, 1992)<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://www.literateprogramming.com/ifdefs.pdf"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> - официальная публикация.</li>
+</ul>
+<p>Бред Эплтон (Brad Appleton) сказал:</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->“<!-- raw HTML omitted -->
+Что мне не нравится в переключателях функций/флагах, так это то, что они НЕ являются недолговечными, как предполагалось, и нам приходится возвращаться к знаменитой статье Спенсера и Коллайера. Самое смешное, что ветки для функций (feature-branches) появаились точно таким же путем. Когда они были впервые представлены, это предназначалось для функциональных команд, разрабатывающих очень большие функции, а отдельные ветки для функций были нужны потому, что слишком много людей пытались одновременно влить код в одну и ту же ветку. Таким образом, идея заключалась в использовании отдельных ветвей (для масштабирования), и команды могли бы интегрироваться в свою командную ветвь ежедневно или чаще с интеграцией по крайней мере каждую ночь по всем функциональным веткам [вздох].</p>
+<!-- raw HTML omitted -->
+<h1 id="внешние-ссылки">Внешние ссылки</h1>
+<p><!-- raw HTML omitted -->show references<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+
+			<aside class="copyright" role="note">
+				&copy; 2017-2020: <a href="https://devops.paulhammant.com/">Paul Hammant</a>. With Contributions <a href="https://trunkbaseddevelopment.ru/contributions/">from friends</a>.
+				Site built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				with
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme,
+				via <a href="https://netlify.com/">Netlify</a>. &nbsp;
+				<a href="https://github.com/paul-hammant/tbd/edit/master/content//_index.md">Contribute to this page</a>
+
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://trunkbaseddevelopment.ru/branch-by-abstraction/" title="Ветвление по абстракции">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Ветвление по абстракции
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://trunkbaseddevelopment.ru/vcs-choices/" title="Version control system choices">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Version control system choices
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/trunkbaseddevelopment.ru\/';
+      var repo_id  = 'paul-hammant\/tbd';
+    
+    </script>
+
+    <script src="https://trunkbaseddevelopment.ru/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+
+      var showHideRefs = document.getElementById("showHideRefs");
+      var refsElsewhereH1;
+      var refsTable;
+      if (showHideRefs) {
+          refsElsewhereH1 = document.getElementById("references-elsewhere");
+      }
+      if (showHideRefs) {
+          refsTable = refsElsewhereH1.nextElementSibling.nextElementSibling;
+          hideRefs();
+      }
+
+      function hideRefs() {
+          refsTable.style.display = "none";
+          showHideRefs.innerHTML = "show references";
+      }
+
+      function toggleRefs() {
+          if(refsTable.style.display == "block") {
+              hideRefs();
+          }
+          else {
+              refsTable.style.display = "block";
+              showHideRefs.innerHTML = "hide references";
+          }
+      }
+
+
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', '//www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-24415524-3', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
