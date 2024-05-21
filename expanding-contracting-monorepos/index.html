@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="ru-ru">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Expanding Contracting Monorepos - Trunk Based Development</title>
+    <meta name="generator" content="Hugo 0.74.3" />
+
+    
+    <meta name="description" content="A portal on this practice">
+    
+    <link rel="canonical" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+    
+    <meta name="author" content="paul-hammant">
+    
+
+    <meta property="og:url" content="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+    <meta property="og:title" content="Trunk Based Development">
+    <meta property="og:image" content="https://trunkbaseddevelopment.ru/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Trunk Based Development">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot');
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.woff')
+               format('woff'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.ttf')
+               format('truetype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/application.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://trunkbaseddevelopment.ru/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-light-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Trunk Based Development: Expanding Contracting Monorepos
+      </div>
+    </div>
+
+    
+
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <div class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://trunkbaseddevelopment.ru/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Trunk Based Development</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <hr>
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Введение" href="https://trunkbaseddevelopment.ru/">
+	
+	Введение
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Контекст" href="https://trunkbaseddevelopment.ru/context/">
+	
+	Контекст
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Краткий обзор" href="https://trunkbaseddevelopment.ru/5-min-overview/">
+	
+	Краткий обзор
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Определяющие факторы" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+	
+	Определяющие факторы
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Функции системы контроля версий" href="https://trunkbaseddevelopment.ru/vcs-features/">
+	
+	Функции системы контроля версий
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Version control system choices" href="https://trunkbaseddevelopment.ru/vcs-choices/">
+	
+	Version control system choices
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Флаги для функций" href="https://trunkbaseddevelopment.ru/feature-flags/">
+	
+	Флаги для функций
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветвление по абстракции" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+	
+	Ветвление по абстракции
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветка для релиза" href="https://trunkbaseddevelopment.ru/branch-for-release/">
+	
+	Ветка для релиза
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Релиз из ветки trunk" href="https://trunkbaseddevelopment.ru/release-from-trunk/">
+	
+	Релиз из ветки trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Styles and Trade-offs" href="https://trunkbaseddevelopment.ru/styles/">
+	
+	Styles and Trade-offs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Integration (CI)" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+	
+	Continuous Integration (CI)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Вливание кода напрямую в trunk" href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">
+	
+	Вливание кода напрямую в trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Short Lived Feature Branches" href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">
+	
+	Short Lived Feature Branches
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Code Review" href="https://trunkbaseddevelopment.ru/continuous-review/">
+	
+	Continuous Code Review
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Delivery (CD)" href="https://trunkbaseddevelopment.ru/continuous-delivery/">
+	
+	Continuous Delivery (CD)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Concurrent development of consecutive releases" href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">
+	
+	Concurrent development of consecutive releases
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application strangulation" href="https://trunkbaseddevelopment.ru/strangulation/">
+	
+	Application strangulation
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Observed habits" href="https://trunkbaseddevelopment.ru/observed-habits/">
+	
+	Observed habits
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="You&#39;re doing it wrong" href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/">
+	
+	You&#39;re doing it wrong
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Alternative branching models" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+	
+	Alternative branching models
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Monorepos" href="https://trunkbaseddevelopment.ru/monorepos/">
+	
+	Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Expanding Contracting Monorepos" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+	
+	Expanding Contracting Monorepos
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Game Changers" href="https://trunkbaseddevelopment.ru/game-changers/">
+	
+	Game Changers
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Publications" href="https://trunkbaseddevelopment.ru/publications/">
+	
+	Publications
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Book on this topic" href="https://trunkbaseddevelopment.ru/book/">
+	
+	Book on this topic
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Key to branch diagrams" href="https://trunkbaseddevelopment.ru/key/">
+	
+	Key to branch diagrams
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Contributions" href="https://trunkbaseddevelopment.ru/contributions/">
+	
+	Contributions
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+
+        <ul>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd" target="_blank" title="See GitHub Repo">
+              Site Source on Github
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd/commit/" target="_blank">
+              SHA-1 Published: 
+            </a>
+          </li>
+          </li>
+<iframe id="buy" width='160' height='400' src='https://leanpub.com/trunk-based-development/embed' frameborder='0' allowtransparency='true'></iframe>
+          <li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1 style="color: white; padding: 32px 20px 72px; background-image:url(/images/LogoSlim.png); background-repeat: no-repeat; background-size: 100% auto"><span style="background-color: #5677fc">Expanding Contracting Monorepos </span></h1>
+
+			<p>At some point with a monorepo approach to source control (especially with binary dependencies in the source tree), your checkouts
+could be bigger than your local workstation&rsquo;s hard drive. Or even if the checkout is not too big for your hard drive,
+then it might be too much for your IDE, and you do not want to have to abandon it for Vim/Emacs. Or maybe it is not your IDE that
+chokes but rather is something about the build that&rsquo;s too much locally, despite command-line arguments to attempt to
+pare it down for a shorter elapsed time.</p>
+<p>There is a way to intelligently expand or contract the checkout on your developer workstation, to alleviate all of
+the above.</p>
+<h2 id="gcheckoutsh">Gcheckout.sh</h2>
+<p>Google&rsquo;s in-house DevOps uses some simple scripting to
+modify the checkout on the developer&rsquo;s workstation to omit the source files/packages that are not needed for the
+current intentions of the developer. This Blaze related technology is a shell command called &lsquo;gcheckout&rsquo;. It can modify the mappings between the multi-gigabyte HEAD
+revision of company-wide trunk (monorepo) and developer&rsquo;s own workstation. Thus the source-control tools maintain the
+<strong>smallest possible subset</strong> of the monorepo on the developer&rsquo;s workstation, for them to perform their daily work.
+Google and the industry refer to the general feature as &lsquo;sparse checkout&rsquo;.</p>
+<p>You can run <code>gcheckout</code> at any time to modify your sparse checkout to be bigger or smaller (or wholly different) for
+different reasons. All of those are operations on your local representation of a larger trunk.</p>
+<h2 id="contrived-example-of-use">Contrived example of use</h2>
+<p>We detailed two intentions for directed graph build systems above, using a contrived application. Here is one more:</p>
+<ul>
+<li>I now want to change <code>TheORMweBothDependOn</code>, because a change to <code>MyTeamsApplication</code> requires me to do that.</li>
+</ul>
+<p>In Google, rather than feed into the backlog of the team that maintains <code>TheORMweBothDependOn</code> (which may exist as a part-time
+committee rather than a team), the developer in question would make the change themselves. Perhaps they had made
+it in the same commit as the first usage of it for <code>MyTeamsApplication</code>.  In the code review cycle (Google practices
+common code ownership), the approvers for the <code>TheORMweBothDependOn</code> would see all the changes together. The larger change is
+all accepted or rejected (to be remediated) atomically.</p>
+<p>So our developer was working on <code>MyTeamsApplication</code>, which depended on <code>TheORMweBothDependOn</code> (which probably transitively
+depended on other things). Now that developer is going to change <code>TheORMweBothDependOn</code> and that impacts <code>TheirApplication</code>
+too. The Blaze related checkout-modifying technology &lsquo;gcheckout&rsquo; performs an expansion to bring in <code>TheirApplication</code> to the
+developer&rsquo;s checkout. From that moment on, the developer doing update/pull/sync will bring down minute by minute
+changes to those three modules.  For free, the build expands to make sure that the <code>TheORMweBothDependOn</code> changes do not
+break either of <code>MyTeamsApplication</code> or <code>TheirApplication</code>.</p>
+<h3 id="directory-structure-and-working-copy">Directory structure and working copy.</h3>
+<p>If I ran <code>gcheckout</code> with MyTeamsApplication+TheirApplication as the parameter I would get working copy that looked like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">root/
+  java/
+    BUILD
+    com/
+      BUILD
+      google/
+        BUILD
+        myteamsapplication/
+          BUILD
+          MyTeamsApplication.java  // and hundreds of other packages and source files
+        theirapplication/
+          BUILD
+          TheirApplication.java  // and hundreds of other packages and source files
+        theormwebothdependon/
+          BUILD
+          TheORMweBothDependOn.java  // and hundreds of other packages and source files
+  java_test/
+    BUILD
+    com/
+      BUILD
+      google/
+        BUILD
+        myteamsapplication/
+          BUILD
+          MyTeamsApplicationTest.java  // and hundreds of other packages and source files
+        theirapplication/
+          BUILD
+          TheirApplicationTest.java  // and hundreds of other packages and source files
+        theormwebothdependon/
+          BUILD
+          TheORMweBothDependOnTest.java  // and hundreds of other packages and source files
+</code></pre></div><p>If I ran <code>gcheckout</code> with MyTeamsApplication as the parameter I would get working copy that looked like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">root/
+  java/
+    BUILD
+    com/
+      BUILD
+      google/
+        BUILD
+        myteamsapplication/
+          BUILD
+          MyTeamsApplication.java  // and hundreds of other packages and source files
+        theormwebothdependon/
+          BUILD
+          TheORMweBothDependOn.java  // and hundreds of other packages and source files
+  java_test/
+    BUILD
+    com/
+      BUILD
+      google/
+        BUILD
+        myteamsapplication/
+          BUILD
+          MyTeamsApplicationTest.java  // and hundreds of other packages and source files
+        theormwebothdependon/
+          BUILD
+          TheORMweBothDependOnTest.java  // and hundreds of other packages and source files
+</code></pre></div><p>If I ran <code>gcheckout</code> with TheORMweBothDependOn as the parameter I would get working copy that looked like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">root/
+  java/
+    BUILD
+    com/
+      BUILD
+      google/
+        BUILD
+        theormwebothdependon/
+          BUILD
+          TheORMweBothDependOn.java  // and hundreds of other packages and source files
+  java_test/
+    BUILD
+    com/
+      BUILD
+      google/
+        BUILD
+        theormwebothdependon/
+          BUILD
+          TheORMweBothDependOnTest.java  // and hundreds of other packages and source files
+</code></pre></div><p>You can keep rerunning the <code>gcheckout</code> to expand or contract your working copy to meet your current goals.</p>
+<h2 id="contrived-example-of-use-2">Contrived example of use #2</h2>
+<p>We used &lsquo;change the wheel on a car&rsquo;, on the <a href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">Branch By Abstraction</a> page for its contrived
+example. It will serve us again here. The wheel is what we want to change. The other team using &lsquo;Wheel(s)&rsquo; is making a
+Segway thing (two wheels and self-balancing via high-torque and very responsive motors). Here&rsquo;s the procedure:</p>
+<p><img src="car_segway.png" alt=""></p>
+<p>The starting position is two teams working separately, using &lsquo;Wheel&rsquo; (4 for cars, 2 for Segways). Without any commits
+happening the engineer changing &lsquo;Wheel&rsquo; for everyone, runs gcheckout (or its equivalent) to modify the source in the
+IDE to the union of Car and Segway (and in-house dependencies). That is marked as step 0. Let us say the
+change is quick/easy this time (not requiring Branch By Abstraction) step 1 shows the single commit that changes
+the wheel implementation for everyone.  After the commit/push, running again shows the application focused team checkout - either
+&lsquo;Car&rsquo; or &lsquo;Segway&rsquo;.</p>
+<h2 id="gits-sparse-checkouts">Git&rsquo;s Sparse checkouts</h2>
+<p>Git has a &lsquo;sparse checkout&rsquo; capability, which exactly facilitates this sort of thing. Subversion and Mercurial do too.<br>
+Perforce has a &lsquo;client spec&rsquo; capability that is more or less the same. A team wanting to have their own gcheckout equivalent
+would have some scripting around sparse checkouts (or equivalent).</p>
+<h3 id="using-git-this-way-today">Using Git this way today</h3>
+<p>If you&rsquo;re willing to go a &lsquo;split history&rsquo; maneuver on your monorepo once or twice a year, Git can do the expandable and
+contractible monorepo setup today.</p>
+<h2 id="perforces-client-specs">Perforce&rsquo;s client-specs</h2>
+<p>Perforce has a &lsquo;client spec&rsquo; (alternatively &lsquo;view&rsquo;) that is accessed via the client command or UI. Amongst other things, it
+allows a checkout to be a subset of the directories/files available within the branch. A list of globbed includes and
+excludes is the format. You would script this (as Google did until 2012) to have a directed graph driven
+expandable/contractible checkout.</p>
+<h2 id="plasticscms-cloakedconf">PlasticSCM&rsquo;s cloaked.conf</h2>
+<p>As Perforce, but via &lsquo;cloaked.conf&rsquo; file.</p>
+<h2 id="subversions-sparse-checkouts">Subversion&rsquo;s sparse-checkouts</h2>
+<p>Subversion has a &lsquo;sparse checkout&rsquo; capability. You do a series of checkout operations at various directory levels in order
+to create the mapping, so is less atomic or centrally configured than the others.  They have made also made a &lsquo;viewspec&rsquo; script
+<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://svn.apache.org/repos/asf/subversion/trunk/tools/client-side/svn-viewspec.py"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>
+to allow the reshaping of the working copy to happen in a more declarative way.</p>
+
+
+			<aside class="copyright" role="note">
+				&copy; 2017-2020: <a href="https://devops.paulhammant.com/">Paul Hammant</a>. With Contributions <a href="https://trunkbaseddevelopment.ru/contributions/">from friends</a>.
+				Site built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				with
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme,
+				via <a href="https://netlify.com/">Netlify</a>. &nbsp;
+				<a href="https://github.com/paul-hammant/tbd/edit/master/content//_index.md">Contribute to this page</a>
+
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://trunkbaseddevelopment.ru/game-changers/" title="Game Changers">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Game Changers
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://trunkbaseddevelopment.ru/monorepos/" title="Monorepos">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Monorepos
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/trunkbaseddevelopment.ru\/';
+      var repo_id  = 'paul-hammant\/tbd';
+    
+    </script>
+
+    <script src="https://trunkbaseddevelopment.ru/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+
+      var showHideRefs = document.getElementById("showHideRefs");
+      var refsElsewhereH1;
+      var refsTable;
+      if (showHideRefs) {
+          refsElsewhereH1 = document.getElementById("references-elsewhere");
+      }
+      if (showHideRefs) {
+          refsTable = refsElsewhereH1.nextElementSibling.nextElementSibling;
+          hideRefs();
+      }
+
+      function hideRefs() {
+          refsTable.style.display = "none";
+          showHideRefs.innerHTML = "show references";
+      }
+
+      function toggleRefs() {
+          if(refsTable.style.display == "block") {
+              hideRefs();
+          }
+          else {
+              refsTable.style.display = "block";
+              showHideRefs.innerHTML = "hide references";
+          }
+      }
+
+
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', '//www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-24415524-3', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

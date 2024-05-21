@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="ru-ru">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Observed habits - Trunk Based Development</title>
+    <meta name="generator" content="Hugo 0.74.3" />
+
+    
+    <meta name="description" content="A portal on this practice">
+    
+    <link rel="canonical" href="https://trunkbaseddevelopment.ru/observed-habits/">
+    
+    <meta name="author" content="paul-hammant">
+    
+
+    <meta property="og:url" content="https://trunkbaseddevelopment.ru/observed-habits/">
+    <meta property="og:title" content="Trunk Based Development">
+    <meta property="og:image" content="https://trunkbaseddevelopment.ru/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Trunk Based Development">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot');
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.woff')
+               format('woff'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.ttf')
+               format('truetype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/application.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://trunkbaseddevelopment.ru/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-light-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Trunk Based Development: Observed habits
+      </div>
+    </div>
+
+    
+
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <div class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://trunkbaseddevelopment.ru/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Trunk Based Development</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <hr>
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Введение" href="https://trunkbaseddevelopment.ru/">
+	
+	Введение
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Контекст" href="https://trunkbaseddevelopment.ru/context/">
+	
+	Контекст
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Краткий обзор" href="https://trunkbaseddevelopment.ru/5-min-overview/">
+	
+	Краткий обзор
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Определяющие факторы" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+	
+	Определяющие факторы
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Функции системы контроля версий" href="https://trunkbaseddevelopment.ru/vcs-features/">
+	
+	Функции системы контроля версий
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Version control system choices" href="https://trunkbaseddevelopment.ru/vcs-choices/">
+	
+	Version control system choices
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Флаги для функций" href="https://trunkbaseddevelopment.ru/feature-flags/">
+	
+	Флаги для функций
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветвление по абстракции" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+	
+	Ветвление по абстракции
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветка для релиза" href="https://trunkbaseddevelopment.ru/branch-for-release/">
+	
+	Ветка для релиза
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Релиз из ветки trunk" href="https://trunkbaseddevelopment.ru/release-from-trunk/">
+	
+	Релиз из ветки trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Styles and Trade-offs" href="https://trunkbaseddevelopment.ru/styles/">
+	
+	Styles and Trade-offs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Integration (CI)" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+	
+	Continuous Integration (CI)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Вливание кода напрямую в trunk" href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">
+	
+	Вливание кода напрямую в trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Short Lived Feature Branches" href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">
+	
+	Short Lived Feature Branches
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Code Review" href="https://trunkbaseddevelopment.ru/continuous-review/">
+	
+	Continuous Code Review
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Delivery (CD)" href="https://trunkbaseddevelopment.ru/continuous-delivery/">
+	
+	Continuous Delivery (CD)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Concurrent development of consecutive releases" href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">
+	
+	Concurrent development of consecutive releases
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application strangulation" href="https://trunkbaseddevelopment.ru/strangulation/">
+	
+	Application strangulation
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Observed habits" href="https://trunkbaseddevelopment.ru/observed-habits/">
+	
+	Observed habits
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="You&#39;re doing it wrong" href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/">
+	
+	You&#39;re doing it wrong
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Alternative branching models" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+	
+	Alternative branching models
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Monorepos" href="https://trunkbaseddevelopment.ru/monorepos/">
+	
+	Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Expanding Contracting Monorepos" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+	
+	Expanding Contracting Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Game Changers" href="https://trunkbaseddevelopment.ru/game-changers/">
+	
+	Game Changers
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Publications" href="https://trunkbaseddevelopment.ru/publications/">
+	
+	Publications
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Book on this topic" href="https://trunkbaseddevelopment.ru/book/">
+	
+	Book on this topic
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Key to branch diagrams" href="https://trunkbaseddevelopment.ru/key/">
+	
+	Key to branch diagrams
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Contributions" href="https://trunkbaseddevelopment.ru/contributions/">
+	
+	Contributions
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+
+        <ul>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd" target="_blank" title="See GitHub Repo">
+              Site Source on Github
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd/commit/" target="_blank">
+              SHA-1 Published: 
+            </a>
+          </li>
+          </li>
+<iframe id="buy" width='160' height='400' src='https://leanpub.com/trunk-based-development/embed' frameborder='0' allowtransparency='true'></iframe>
+          <li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1 style="color: white; padding: 32px 20px 72px; background-image:url(/images/LogoSlim.png); background-repeat: no-repeat; background-size: 100% auto"><span style="background-color: #5677fc">Observed habits </span></h1>
+
+			<h2 id="no-code-freeze">No Code Freeze</h2>
+<p>Developers living in a Trunk-Based Development reality, mostly do not experience variance in their days or weeks on the
+trunk. In particular, there is no &ldquo;we&rsquo;re close to a release so let&rsquo;s freeze code&rdquo;, and generally there is no indication
+of a slowdown in proximity to a release.  Sure, a couple of developers out of a team might be assigned to bug-fixing closer
+to the release but everyone else is going to work at full speed.</p>
+<p>Generally speaking, the trunk is a place to firehose commits into, and the habits of the developers are such that
+everything is ready to go live. If a team is doing 12 releases a year, then a release branch that is cut on the just in time
+basis and is the one that is observed to be &lsquo;frozen&rsquo; because of the absence of developers. Refer <a href="https://trunkbaseddevelopment.ru/branch-for-release/">branch for release</a>.</p>
+<h3 id="every-day-is-the-same">Every Day is the same</h3>
+<p>Ignoring meetings, developers commit/push at the same rate and to the same place regardless of the day of the week or
+the week of the month. This is a reinforcement of the &ldquo;No Code Freeze&rdquo; rule above. Sure a small subset of the team
+may focus on an imminent release (bug fixes in the trunk, cherry-picked to the release branch), but the majority
+should be focusing on &lsquo;business as usual&rsquo; implementation of functionality for a future release.</p>
+<h2 id="quick-reviews">Quick Reviews</h2>
+<p>Teams doing Trunk-Based Development know that their commits/pushes will be scrutinized by others, as soon
+as they have landed on the shared trunk. They are keen on bringing that forward, not delaying it, so they may prefer to
+pair-program on code changes. Or they may ask colleagues for a code review at the time the change is submitted to be
+merged into the trunk.</p>
+<h2 id="chasing-head">Chasing HEAD</h2>
+<p>Trunk-Based Development teams update/pull/sync from the shared trunk often. Many times a day in fact.</p>
+<h2 id="running-the-build-locally">Running the build locally</h2>
+<p>Developers practicing Trunk-Based Development run the build before a commit/push in order to not break the build.
+This one practice, for very small teams, allows them to not set up a CI server until later. If they cannot push their
+commits to the shared trunk because someone else beat them to it then they have to do another update/sync/pull and
+another build and push their revised commit(s). &ldquo;It worked on my machine&rdquo; says the developer that does not
+want to confess to breaking the build (assuming quick reliable idempotent builds).</p>
+<h2 id="facilitating-commits">Facilitating commits</h2>
+<p>Because everyone in a team is chasing HEAD of the trunk, there could be a moment where one change is imagined that
+could inconvenience everyone else in some way. Say a big directory rename as part of an extensive rework of the
+source with it. It could be that the developer performing those two changes does the rename first and pushes it through to
+the trunk where everyone will get it on the next pull/sync/update. It might be that if separated somehow, the rename
+on its own is easier to consume by teammates, with the second being a relatively smaller commit later.</p>
+<p>Git and Mercurial track files through their content rather than by directory and file name, so they make light of the
+situation described above, anyway.</p>
+<h2 id="powering-through-broken-builds">Powering through broken builds</h2>
+<p>So because of that lazy developer, or the flaky build, or pure accident of timing (Google has a commit every 30
+seconds into their monorepo - there must be quantum entangled commits on a 0.0001% basis), the trunk will be observed
+to be broken occasionally.</p>
+<p>The best implementations are going to perform automatic rollback of a broken commit that lands in the trunk. The
+developer gets notified and they get to fix it quietly on their workstation.</p>
+<p>A developer wanting to update/pull/sync from the shared trunk often runs the risk of encountering that
+statistically improbable broken build. They do not want to have the commits that broke the trunk, on their workstation
+if they are developing. So what they do is update/pull/sync to the last known good commit, and only go further
+ahead when the trunk build is officially repaired. This way they know they can stay &lsquo;green&rsquo; on their workstation. Some
+companies engineer a system where the last known good commit hash/number is stored in a network share, and a shell
+script used for update/pull/sync does so to that instead of HEAD revision.</p>
+<h3 id="build-cop">Build Cop</h3>
+<p>If the Continuous Integration server is batching commits to trunk in each build, or the elapsed time for a build is
+long then a &ldquo;build cop&rdquo; role might be required within the team to help sort out build breakages. Sadly that
+means that locking the trunk to prevent further checkins on top of the broken one might be necessary as some form
+of bisecting is performed to work out which commit broke the build and should be rolled back. Obviously a Continuous
+Integration server setup that can run one build per commit is best.</p>
+<h2 id="shared-nothing">Shared Nothing</h2>
+<p>Developers on their workstations rely on a &lsquo;microcosm&rsquo; setup for the application or service
+they are developing. They can:</p>
+<ul>
+<li>bring up the application on their workstation and play with it.</li>
+<li>run all unit, integration and functional tests against it locally</li>
+</ul>
+<p>Shared nothing requires significant discipline to achieve. It generally means that no TCP-IP leaves the developers
+box, and being able to prove that by running those operations while disconnected from the network.  The
+implementing of the wire mocking (service virtualization) of dependent tiers outside the team, is a given. The highest
+accomplished Trunk-Based Development teams employ mocking of tiers within the same application, in order to make
+tests fast and stable. Technologies such as Mountebank<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://www.mbtest.org"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> make
+programming working with wire mocking easy. Tiers refer to a layer-cake view of an applications construction, of course.</p>
+<p>With a Microcosm strategy which delivers shared nothing for a developer workstation, it is acknowledged that
+non-functional consistency with production has been thrown out of the window and that only functional correctness
+is being honored.  This is only really any good for the act of development on a workstation, and the verification of
+that (per commit) by a Continuous Integration daemon.</p>
+<p>Your team will need many named QA environments, and many named
+user acceptance testing (UAT) environments. Each of those with different rules about the frequency of deployment, and even perhaps even
+a temporarily reservation for different reasons. Those environments pull together <strong>real</strong> dependent services
+and integrated applications. As much as possible those environs should not have shared services.</p>
+<p>Companies often make a classic mistake when buying software in that they (say) buy one license for prod, and another
+for all dev, QA, and UAT, meaning the DevOps team had configured it as shared for all those environments, with a
+wide-ranging negative impact on productivity and quality for innumerable and sometimes subtle psychological reasons.</p>
+<h2 id="common-code-ownership">Common code ownership</h2>
+<p>Committing to the trunk many times a day requires a broad sense of ownership to code, and a willingness to allow
+developers to contribute changes to sections of an application or service that they have not previously be involved
+with. This privilege does come with responsibilities and checks. The former is to standards, and the checks are by the CI server,
+and by humans who should honor to do a speedy code review. That last, for the highest performing teams, means as soon
+as the proposed commit is ready.</p>
+<h2 id="always-release-ready">Always Release Ready</h2>
+<p>Not only do developers practicing Trunk-Based Development not break the build with any commit, they also sign up to
+being able to go live at short notice. For example, one hour, if the CIO visits and says it is going to happen. That
+means there is a bunch of automated tests that come with the build.</p>
+<h2 id="thin-vertical-slices">Thin vertical slices</h2>
+<p>Where possible stories or tasks that have been pulled from the backlog should be achievable by a developer or pair of
+developers in a short period of time, and in a small number of commits. They should also transcend all the apparent
+tiers of the stack, and not have to jump between developers with specialized knowledge in order to be able to
+completed. The Agile industry donates the INVEST<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://en.wikipedia.org/wiki/INVEST_%28mnemonic%29"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span> principle
+as well as &ldquo;Thin Vertical Slices&quot;<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://www.scruminc.com/wp-content/uploads/2015/06/User-Stories-2.0.pdf"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span>
+for this purpose, and that are great enablers of high throughput commits to the trunk, and always being release ready.</p>
+
+
+			<aside class="copyright" role="note">
+				&copy; 2017-2020: <a href="https://devops.paulhammant.com/">Paul Hammant</a>. With Contributions <a href="https://trunkbaseddevelopment.ru/contributions/">from friends</a>.
+				Site built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				with
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme,
+				via <a href="https://netlify.com/">Netlify</a>. &nbsp;
+				<a href="https://github.com/paul-hammant/tbd/edit/master/content//_index.md">Contribute to this page</a>
+
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/" title="You&#39;re doing it wrong">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              You&#39;re doing it wrong
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://trunkbaseddevelopment.ru/strangulation/" title="Application strangulation">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Application strangulation
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/trunkbaseddevelopment.ru\/';
+      var repo_id  = 'paul-hammant\/tbd';
+    
+    </script>
+
+    <script src="https://trunkbaseddevelopment.ru/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+
+      var showHideRefs = document.getElementById("showHideRefs");
+      var refsElsewhereH1;
+      var refsTable;
+      if (showHideRefs) {
+          refsElsewhereH1 = document.getElementById("references-elsewhere");
+      }
+      if (showHideRefs) {
+          refsTable = refsElsewhereH1.nextElementSibling.nextElementSibling;
+          hideRefs();
+      }
+
+      function hideRefs() {
+          refsTable.style.display = "none";
+          showHideRefs.innerHTML = "show references";
+      }
+
+      function toggleRefs() {
+          if(refsTable.style.display == "block") {
+              hideRefs();
+          }
+          else {
+              refsTable.style.display = "block";
+              showHideRefs.innerHTML = "hide references";
+          }
+      }
+
+
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', '//www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-24415524-3', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="ru-ru">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Alternative branching models - Trunk Based Development</title>
+    <meta name="generator" content="Hugo 0.74.3" />
+
+    
+    <meta name="description" content="A portal on this practice">
+    
+    <link rel="canonical" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+    
+    <meta name="author" content="paul-hammant">
+    
+
+    <meta property="og:url" content="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+    <meta property="og:title" content="Trunk Based Development">
+    <meta property="og:image" content="https://trunkbaseddevelopment.ru/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Trunk Based Development">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://trunkbaseddevelopment.ru/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot');
+        src: url('https://trunkbaseddevelopment.ru/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.woff')
+               format('woff'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.ttf')
+               format('truetype'),
+             url('https://trunkbaseddevelopment.ru/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/application.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://trunkbaseddevelopment.ru/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://trunkbaseddevelopment.ru/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-blue palette-accent-light-blue">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Trunk Based Development: Alternative branching models
+      </div>
+    </div>
+
+    
+
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <div class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://trunkbaseddevelopment.ru/images/logo.png">
+        </div>
+      
+      <div class="name">
+        <strong>Trunk Based Development</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      <hr>
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Введение" href="https://trunkbaseddevelopment.ru/">
+	
+	Введение
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Контекст" href="https://trunkbaseddevelopment.ru/context/">
+	
+	Контекст
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Краткий обзор" href="https://trunkbaseddevelopment.ru/5-min-overview/">
+	
+	Краткий обзор
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Определяющие факторы" href="https://trunkbaseddevelopment.ru/deciding-factors/">
+	
+	Определяющие факторы
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Функции системы контроля версий" href="https://trunkbaseddevelopment.ru/vcs-features/">
+	
+	Функции системы контроля версий
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Version control system choices" href="https://trunkbaseddevelopment.ru/vcs-choices/">
+	
+	Version control system choices
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Флаги для функций" href="https://trunkbaseddevelopment.ru/feature-flags/">
+	
+	Флаги для функций
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветвление по абстракции" href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">
+	
+	Ветвление по абстракции
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Ветка для релиза" href="https://trunkbaseddevelopment.ru/branch-for-release/">
+	
+	Ветка для релиза
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Релиз из ветки trunk" href="https://trunkbaseddevelopment.ru/release-from-trunk/">
+	
+	Релиз из ветки trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Styles and Trade-offs" href="https://trunkbaseddevelopment.ru/styles/">
+	
+	Styles and Trade-offs
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Integration (CI)" href="https://trunkbaseddevelopment.ru/continuous-integration/">
+	
+	Continuous Integration (CI)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Вливание кода напрямую в trunk" href="https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/">
+	
+	Вливание кода напрямую в trunk
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Short Lived Feature Branches" href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">
+	
+	Short Lived Feature Branches
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Code Review" href="https://trunkbaseddevelopment.ru/continuous-review/">
+	
+	Continuous Code Review
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Continuous Delivery (CD)" href="https://trunkbaseddevelopment.ru/continuous-delivery/">
+	
+	Continuous Delivery (CD)
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Concurrent development of consecutive releases" href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">
+	
+	Concurrent development of consecutive releases
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Application strangulation" href="https://trunkbaseddevelopment.ru/strangulation/">
+	
+	Application strangulation
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Observed habits" href="https://trunkbaseddevelopment.ru/observed-habits/">
+	
+	Observed habits
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="You&#39;re doing it wrong" href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/">
+	
+	You&#39;re doing it wrong
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Alternative branching models" href="https://trunkbaseddevelopment.ru/alternative-branching-models/">
+	
+	Alternative branching models
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Monorepos" href="https://trunkbaseddevelopment.ru/monorepos/">
+	
+	Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Expanding Contracting Monorepos" href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">
+	
+	Expanding Contracting Monorepos
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Game Changers" href="https://trunkbaseddevelopment.ru/game-changers/">
+	
+	Game Changers
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Publications" href="https://trunkbaseddevelopment.ru/publications/">
+	
+	Publications
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Book on this topic" href="https://trunkbaseddevelopment.ru/book/">
+	
+	Book on this topic
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Key to branch diagrams" href="https://trunkbaseddevelopment.ru/key/">
+	
+	Key to branch diagrams
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Contributions" href="https://trunkbaseddevelopment.ru/contributions/">
+	
+	Contributions
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+
+        <ul>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd" target="_blank" title="See GitHub Repo">
+              Site Source on Github
+            </a>
+          </li>
+
+          <li>
+            <a href="https://github.com/paul-hammant/tbd/commit/" target="_blank">
+              SHA-1 Published: 
+            </a>
+          </li>
+          </li>
+<iframe id="buy" width='160' height='400' src='https://leanpub.com/trunk-based-development/embed' frameborder='0' allowtransparency='true'></iframe>
+          <li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1 style="color: white; padding: 32px 20px 72px; background-image:url(/images/LogoSlim.png); background-repeat: no-repeat; background-size: 100% auto"><span style="background-color: #5677fc">Alternative branching models </span></h1>
+
+			<div class="admonition quote">
+<p class="admonition-title">Branch: only when necessary, on incompatible policy, late, and instead of freeze</p>
+<span style="padding-left: 15px"><!-- raw HTML omitted -->— Laura Wingerd &amp; Christopher Seiwald<!-- raw HTML omitted --><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->(1998&rsquo;s High-Level SCM Best Practices white paper from Perforce)<!-- raw HTML omitted --></span>
+</div>
+<br/>
+<h2 id="modern-claimed-high-throughput-branching-models">Modern claimed high-throughput branching models</h2>
+<h3 id="github-flow">GitHub flow</h3>
+<p>This is sooooo close to PR-centric Trunk-Based Development. Why? Because it is a branching model that has individual
+developers active concurrently in more than one (short-lived) branch (or fork). Or developer pairs, rather than
+individuals.</p>
+<p>The crucial difference is <strong>where</strong> the release is performed from.</p>
+<p>The GitHub flow thing showing a release-from-branch step, before the merge back to the master (trunk):</p>
+<p><img src="githubflow1.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<p>One problem with is the small risk of regression in the following release - that would be if the release goes out, but
+the branch is never merged back. Another is that it may indeed not have items in it from the trunk that were part of a
+previous release (actually causing a regression).</p>
+<p>As the GitHub documentation portrays, review comments are part of the process. They are the speech
+bubbles in timeline above followed by another commit, which presumably addressed the review feedback.</p>
+<p>How Trunk-Based Development modifies the GitHub Flow model:</p>
+<p><img src="../5-min-overview/trunk_pr.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<p>After the dust has settled, and the <a href="https://trunkbaseddevelopment.ru/short-lived-feature-branches/">short-lived feature branch</a> has been deleted, the commits are not smushed together
+in a bigger one (as would be the case Subversion and Perforce), they instead zip into their respective places in the
+commit history, which is not as linear as we present here:</p>
+<p><img src="githubflow3.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<p>Of course, if you rebase/squash your series of commits, they could land in the trunk as a single commit.  Also note that
+the review commentary is still available after the branch is deleted, as it should be.</p>
+<p>See the GitHub Flow landing page for more<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="https://guides.github.com/introduction/flow/"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span></p>
+<h3 id="gitflow-and-similar">GitFlow and similar</h3>
+<p>Git Flow is incompatible with Trunk-Based Development.</p>
+<p>There are plenty of people in the modern age that swear by this model, and feel it has plenty of room to scale with few
+downsides. It is a branching model that has <strong>groups</strong> of developers active concurrently in more than one branch (or fork).</p>
+<p><img src="gitflow.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<ul>
+<li>Diagram copied from Vincent Driessen&rsquo;s 2010 article on GitFlow: &ldquo;A successful Git branching model&quot;<span class="rref"><a class="inline-ref" style="border-bottom: 0" target="_blank" href="http://nvie.com/posts/a-successful-git-branching-model"><img style="padding: 0 0 0 3px; width: 16px; height: 14px" src="https://trunkbaseddevelopment.ru/images/ext.png" alt=""></a></span></li>
+</ul>
+<p>It looks like you&rsquo;ll not be able to do <a href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">concurrent development of consecutive releases</a>
+with this branching model, or the hedging that <a href="https://trunkbaseddevelopment.ru/feature-flags/">Feature Flags</a> and <a href="https://trunkbaseddevelopment.ru/branch-by-abstraction/">Branch by Abstraction</a>
+enable.</p>
+<h2 id="legacy-branching-models">Legacy branching models</h2>
+<h2 id="more-than-one-trunk">More than one trunk</h2>
+<p>This seems OK, but has many pitfalls. Consider <strong>not</strong> doing this model.</p>
+<p>Some have a single repository with many trunks (and many branches - release or not). That is not uncommon with VCS
+choices that do not have an upper limit on size (including history). You are at least allowing for atomic commits across many
+of those trunks, which can happen if you have a large refactoring, and atomic commits are always desirable.</p>
+<pre><code>root/    
+  module_one/
+    branches/
+      rel_1.0.0/
+      rel_1.1.0/          
+    trunk/      
+      build_file.xml
+      src/
+        # prod source directory tree
+        # test source directory tree
+  module_two/
+    branches/
+      rel_1.0.0/
+      rel_1.1.0/          
+    trunk/      
+      build_file.xml
+      src/
+        # prod source directory tree
+        # test source directory tree
+  module_three/
+    branches/
+      rel_1.0.0/
+      rel_1.1.0/          
+    trunk/      
+      build_file.xml
+      src/
+        # prod source directory tree
+        # test source directory tree
+</code></pre><p>Many trunks becomes undesirable if you have lock-step release (same cadence) for all the separate trunks in the repo,
+and for all of those you
+are &lsquo;branching for release&rsquo;. You have made it harder for the larger thing to be build from root. Better would be one
+trunk with three modules, and a recursive build system, or one of the modern directed graph build systems like Buck or Bazel:</p>
+<pre><code>root/    
+  branches/
+    rel_1.0.0/
+    rel_1.1.0/          
+  trunk/      
+    module_one/
+      build_file.xml
+      src/
+        # prod source directory tree
+        # test source directory tree
+      module_two/
+        build_file.xml
+        src/
+          # prod source directory tree
+          # test source directory tree
+      module_three/
+        build_file.xml
+        src/
+          # prod source directory tree
+          # test source directory tree
+</code></pre><p>This way at least, you get to make one branch representing the release (with cherry-picks to it as bugs are eliminated).</p>
+<p>Even if you have different release cadences, you can still engineer a trunk this way, you just have to have a build
+system that can reduce to the modules being tested and deployed, skipping those that won&rsquo;t be. See <a href="https://trunkbaseddevelopment.ru/monorepos/">Monorepos</a>
+and <a href="https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/">expanding and contracting monorepos</a>.</p>
+<h3 id="mainline">Mainline</h3>
+<p>Mainline is diametrically opposite to Trunk-Based Development - do not do this.</p>
+<p>Mainline is a branching model that was promoted for ClearCase implementations. It is the principal branching
+model that Trunk-Based Development opposes. Mainline is a branch that will last forever✱. Off that, branches are formed
+for teams to do development work on. When that work is complete, a release may happen from that branch, and there is a
+<strong>big</strong> merge down to the mainline. On the way to the release, the branch may be frozen.</p>
+<p>So here is the intention, with Mainline:</p>
+<p><img src="mainline1.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<p>When bugs inevitably happen:</p>
+<p><img src="mainline2.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<p>Whenever there is a bug fix there has to be a merge down to the mainline afterward. There&rsquo;s no &lsquo;wrong&rsquo; in this modified
+branch diagram, but you should be able to guess what the worst case branching/merging scenario is. In case you cannot:</p>
+<p><img src="mainline3.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<p><strong>Merges for the above</strong></p>
+<ol>
+<li>Release 1.1 team persuades the release 1.0 team to bring something back to Mainline early (and incomplete) before they cut their branch</li>
+<li>Release 1.1 team merges the release 1.0 work upon apparent completion</li>
+<li>Release 1.0 team merges post-release bug fixes back to Mainline, and cross their fingers that the 1.0 branch can truly die now</li>
+<li>Release 1.2 team persuades the release 1.1 team to bring something back to Mainline early (and incomplete) before they cut their branch</li>
+<li>Release 1.1 team merges from Mainline, to pick up #3</li>
+<li>Release 1.2 team merges the release 1.1 work upon apparent completion</li>
+<li>Release 1.1 team merges post-release bug fixes back to Mainline, and cross their fingers that the 1.0 branch can truly die now</li>
+<li>Release 1.2 team merges from Mainline, to pick up #7</li>
+</ol>
+<p>All of these compromises versus the planned &ldquo;consecutive development of consecutive releases&rdquo;. In many cases, it is worse,
+particular when the numbers of developers go up.</p>
+<p>One key thing to note, versus Trunk-Based Development, teams doing the Mainline branching model, almost never do cherry
+pick merges for any reason. Instead, they are doing a &ldquo;merge everything which is not merged already&rdquo; kind of merge.
+Minimalistically the VCS they are using should have &ldquo;merge point tracking&rdquo;. At the high end, that should include
+&ldquo;record only&rdquo; merges, and normal merges even after that.</p>
+<p>✱ Companies that choose &lsquo;Mainline&rsquo; wither and die, we claim, so there is no forever.</p>
+<h4 id="merges">Merges</h4>
+<p>After the release, the code will be merged back en masse to the mainline. Those
+merges may be hard and lengthy. It could be that the team <strong>took merges from</strong> mainline part way through the project. It
+could also be that the team <strong>pushed merges to</strong> mainline part way through the project.</p>
+<h4 id="how-many-branches">How many branches?</h4>
+<p>We&rsquo;ve just described a two branch model - the mainline and a project branch. It could be that the application in
+question has more that one project in flight at any one time. That would mean more than one project branch, and that
+creates pressure for more intermediate merges, and consequentially greater merge difficulty.</p>
+<h4 id="always-release-ready">Always release ready?</h4>
+<p>Not on your life! Planned work needs to complete, with estimates guiding when that will be. Defects need to be
+eliminated, formal testing phases need to kick in. Here we take the first branch diagram, and overlay red and orange
+and green to show known build-breaks, build passes missing automated tests will not catch hidden defects,
+and green for could go live. At least for the worst performing with missing or ineffectual automated
+testing run in the CI pipelines:</p>
+<p><img src="mainline4.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<h3 id="cascade">Cascade</h3>
+<p>Cascade is incompatible with Trunk-Based Development - do not do this.</p>
+<p>The idea is that each release has its own branch and that each release team merges from the &lsquo;upstream&rsquo; branch daily.
+They only do so if the CI server says the build is green for the upstream, of course.</p>
+<p><img src="cascade1.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<p>Problems compound with this model, the more releases being juggled concurrently there are. An upstream butterfly is
+a downstream Tsunami of unmergability. Downstream merges begin to get skipped, or abandoned. Or the merge works, but the
+code is not right so there is some in-branch fixing, which is not applicable to upstream. Here&rsquo;s the reality (breakages
+overlaid again):</p>
+<p><img src="cascade2.png" alt="">
+(<a href="https://trunkbaseddevelopment.ru/key/">key</a>)</p>
+<p>Remember, the merges are never cherry-picks in this model - they are sweeps of everything
+not merged yet (or up to an chosen commit number in order to make it more bite-sized).</p>
+<p>Of course only larger organizations have to worry
+about the <a href="https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/">concurrent development of consecutive releases</a>, and many
+would argue that the application is too large anyway (and that microservices are the solution).</p>
+<h2 id="ci-disproof-of-your-branching-model">CI (dis)proof of your branching model</h2>
+<p>Here&rsquo;s an idea. Configure your CI Server to focus on every branch, regardless of branching model. Specifically to do
+per-commit builds, and do that speculative merge analysis described in <a href="https://trunkbaseddevelopment.ru/game-changers/index.html#snap-ci-s-per-commit-speculative-mergeability-analysis-2013">game changers</a>.</p>
+<p>If everything is green everywhere, then you&rsquo;re in a position to always be release ready, but very few teams are going
+to see green instead of red for this CI server enthusiasm</p>
+<h1 id="references-elsewhere">References elsewhere</h1>
+<p><!-- raw HTML omitted -->show references<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+
+
+			<aside class="copyright" role="note">
+				&copy; 2017-2020: <a href="https://devops.paulhammant.com/">Paul Hammant</a>. With Contributions <a href="https://trunkbaseddevelopment.ru/contributions/">from friends</a>.
+				Site built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				with
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme,
+				via <a href="https://netlify.com/">Netlify</a>. &nbsp;
+				<a href="https://github.com/paul-hammant/tbd/edit/master/content//_index.md">Contribute to this page</a>
+
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://trunkbaseddevelopment.ru/monorepos/" title="Monorepos">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Monorepos
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="https://trunkbaseddevelopment.ru/youre-doing-it-wrong/" title="You&#39;re doing it wrong">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              You&#39;re doing it wrong
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/trunkbaseddevelopment.ru\/';
+      var repo_id  = 'paul-hammant\/tbd';
+    
+    </script>
+
+    <script src="https://trunkbaseddevelopment.ru/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+
+      var showHideRefs = document.getElementById("showHideRefs");
+      var refsElsewhereH1;
+      var refsTable;
+      if (showHideRefs) {
+          refsElsewhereH1 = document.getElementById("references-elsewhere");
+      }
+      if (showHideRefs) {
+          refsTable = refsElsewhereH1.nextElementSibling.nextElementSibling;
+          hideRefs();
+      }
+
+      function hideRefs() {
+          refsTable.style.display = "none";
+          showHideRefs.innerHTML = "show references";
+      }
+
+      function toggleRefs() {
+          if(refsTable.style.display == "block") {
+              hideRefs();
+          }
+          else {
+              refsTable.style.display = "block";
+              showHideRefs.innerHTML = "hide references";
+          }
+      }
+
+
+    </script>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){
+          i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||
+          []).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+          m.parentNode.insertBefore(a,m)
+        })(window, document,
+          'script', '//www.google-analytics.com/analytics.js', 'ga');
+         
+        ga('create', 'UA-24415524-3', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+         
+        var buttons = document.querySelectorAll('a');
+        Array.prototype.map.call(buttons, function(item) {
+          if (item.host != document.location.host) {
+            item.addEventListener('click', function() {
+              var action = item.getAttribute('data-action') || 'follow';
+              ga('send', 'event', 'outbound', action, item.href);
+            });
+          }
+        });
+         
+        var query = document.querySelector('.query');
+        query.addEventListener('blur', function() {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga('send', 'pageview', path + '?q=' + this.value);
+          }
+        });
+      </script>
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

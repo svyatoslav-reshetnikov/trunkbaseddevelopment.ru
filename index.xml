@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Введение on Trunk Based Development</title>
+    <link>https://trunkbaseddevelopment.ru/</link>
+    <description>Recent content in Введение on Trunk Based Development</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ru-ru</language>
+    <lastBuildDate>Thu, 01 Jan 2015 21:07:33 +0100</lastBuildDate>
+    
+	<atom:link href="https://trunkbaseddevelopment.ru/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Контекст</title>
+      <link>https://trunkbaseddevelopment.ru/context/</link>
+      <pubDate>Mon, 05 Jan 2015 09:42:02 +0500</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/context/</guid>
+      <description>Команда разработки, которая хочет перейти на Trunk-Based Development, должна быть морально, технически и инфраструктурно готова к этому. После того, как команда сделает хотя бы несколько коммитов в соответствии с правилами, становится гораздо проще интегрировать в команду другие классные штуки. Мы с вами можем это увидеть на диаграмме:
+DevOps тоже входит в эту практику. По крайней мере, начинается распространение лучших практик разработки в операционных центрах.
+Предпосылки для Trunk-Based Development (слои под Trunk-Based Development)</description>
+    </item>
+    
+    <item>
+      <title>Краткий обзор</title>
+      <link>https://trunkbaseddevelopment.ru/5-min-overview/</link>
+      <pubDate>Fri, 01 Jan 2016 09:42:02 +0500</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/5-min-overview/</guid>
+      <description>Дистанция Ветки создают дистанцию между разработчиками и нам это не нужно.
+— Френк Компанье, Guerrilla Games   Предполагая что у нас есть система контроля версий, доступная через интернет, физическую дистанцию можно сократить с помощью аудио и/или видео технологий за счет демонстрации экрана, например. Так что в наши дни глупо беспокоиться об этом.
+&amp;ldquo;Дистанция&amp;rdquo; Френка это про дистанцию интеграции кода, от кода, который пишут несколько команд (компонентные, модульные, подкоманды), до двоичного кода, который может быть развернут или отправлен.</description>
+    </item>
+    
+    <item>
+      <title>Определяющие факторы</title>
+      <link>https://trunkbaseddevelopment.ru/deciding-factors/</link>
+      <pubDate>Mon, 01 Feb 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/deciding-factors/</guid>
+      <description>Частота релизов Есть много факторов, которые создают давление на команду в промежутке между релизами. Вот некоторые из них. There are many factors that put pressure on the team to lengthen the interval between releases. Here are some.
+Длина итерации Разные Agile команды имеют разную длину итерации. Какие-то команды работают с итерациями по 3 недели, какие-то по 2 недели, какие-то по 1 неделе. Какие-то команды не имеют итераций вообще, особенно если они используют технику Continuous Delivery.</description>
+    </item>
+    
+    <item>
+      <title>Функции системы контроля версий</title>
+      <link>https://trunkbaseddevelopment.ru/vcs-features/</link>
+      <pubDate>Tue, 01 Mar 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/vcs-features/</guid>
+      <description>Желательные функции системы контроля версий, то есть
+По большому счету, вы можете начать работать по Trunk-Based Development в любой системе контроля версий, которая позволяет делать атомарные коммиты (спойлер: после CVS эта возможность есть во всех системах контроля версий). Хотя, их основное различие - продуктивность и то, как мы ими управляем.
+Продуктивность Оказывается, есть много причин, связанных с производительностью, по которым команды меняют одну технологию на другую. Неважно, является ли инструмент коммерческим или открытым.</description>
+    </item>
+    
+    <item>
+      <title>Version control system choices</title>
+      <link>https://trunkbaseddevelopment.ru/vcs-choices/</link>
+      <pubDate>Wed, 02 Mar 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/vcs-choices/</guid>
+      <description>Git and Mercurial See Git&amp;rsquo;s website and Mercurial&amp;rsquo;s website
+Git and Mercurial have been popular DVCS technologies for many years. Portals like GitHub make Git, in particular, the default choice for SCM/SVC/source-control. While the Linux Kernel is maintained with Git, and definitely takes advantage of the D-Distributed aspect of the DVCS of Git (in that many divergent versions of kernel can exist over long periods of time), most enterprises are still going to count a single repository as the principal one, and within that a single branch as the long-term &amp;ldquo;most valuable&amp;rdquo; code line.</description>
+    </item>
+    
+    <item>
+      <title>Флаги для функций</title>
+      <link>https://trunkbaseddevelopment.ru/feature-flags/</link>
+      <pubDate>Fri, 01 Apr 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/feature-flags/</guid>
+      <description>Флаги для функций (feature Flags) это проверенный временем способ, позволяющий контролировать возможности приложения или сервиса самым решительным образом.
+Пример Допустим, у вас есть приложение или сервис, который запускается из командной строки, и у него есть main метод или функция. Вашим флагом функции может быть --withOneClickPurchase, который вы отправляете в качестве аргумента в командную строку. Этот флаг активирует те строчки кода в приложении, которые реализуют функцию покупки в один клик от Amazon.</description>
+    </item>
+    
+    <item>
+      <title>Ветвление по абстракции</title>
+      <link>https://trunkbaseddevelopment.ru/branch-by-abstraction/</link>
+      <pubDate>Tue, 03 May 2016 19:56:50 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/branch-by-abstraction/</guid>
+      <description>Ветвление по абстракции это комплексная техника, которая влияет на параметр &amp;lsquo;время вливания написанного кода&amp;rsquo; в trunk. Допустим, у разработчика (или пары разработчиков, если мы говорим про парное программирование), есть какая-то задача, выполнение которой займет 5 дней. В таком случчае, будет не очень удобно создавать ветку для такой большой задачи, т.к. где-то в основной ветке может быть баг или не очень хороший код, который будет исправлен в этой задаче, и это код будет доставлять неудобства остальным разработчикам 5 дней, пока делается задача.</description>
+    </item>
+    
+    <item>
+      <title>Ветка для релиза</title>
+      <link>https://trunkbaseddevelopment.ru/branch-for-release/</link>
+      <pubDate>Thu, 05 May 2016 19:56:50 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/branch-for-release/</guid>
+      <description>Ветка: только когда необходимо, в случае несовместимой политики, как можно ближе к релизу, и вместо остановки работы
+— Laura Wingerd &amp;amp; Christopher Seiwald(1998&amp;rsquo;s High-Level SCM Best Practices white paper from Perforce)   Если команда выпускает релизы в свет каждый месяц, то у этой команды также есть промежуточные релизы с исправленными ошибками между плановыми релизами раз в месяц. Чтобы было легче, в командах, которые работают по Trunk-Based Development, создают релизную ветку почти перед релизом - например, за несколько дней до него.</description>
+    </item>
+    
+    <item>
+      <title>Релиз из ветки trunk</title>
+      <link>https://trunkbaseddevelopment.ru/release-from-trunk/</link>
+      <pubDate>Fri, 06 May 2016 19:56:50 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/release-from-trunk/</guid>
+      <description>Команды с очень высокой скоростью выпуска релизов вообще не нуждаются (и не смогут использовать) релизные ветки. Они должны выпускать релиз из trunk.
+(key)
+Скорее всего, такие команды не используют десятичную схему нумерации релизов Дьюи (Dewey), а вместо этого имеют что-то относящееся к номеру коммита или дате со временем. Вероятно, они также предпочитают исправить ошибку прямо в ветке trunk, как он обычно поступают при написании нового функционала, только делают это как можно быстрее.</description>
+    </item>
+    
+    <item>
+      <title>Styles and Trade-offs</title>
+      <link>https://trunkbaseddevelopment.ru/styles/</link>
+      <pubDate>Wed, 01 Jun 2016 20:10:45 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/styles/</guid>
+      <description>There are broadly three styles of trunk-based development as a daily developer activity. Depending on the number of developers in the team, the release cadence, and the desired rate of commits (assuming story-sizes that support that), you have trade-offs for each of the three:
+Committing Straight to the Trunk Suitable for active committer counts between 1 and 100.
+ left hand side of the diagram above   Traditionally Trunk-Based Development meant committing straight to the shared trunk of the VCS in question.</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration (CI)</title>
+      <link>https://trunkbaseddevelopment.ru/continuous-integration/</link>
+      <pubDate>Wed, 01 Jun 2016 20:10:46 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/continuous-integration/</guid>
+      <description>individuals practice Trunk-Based Development, and teams practice CI
+— Agile Steve Smith   Continuous Integration - as defined For many years CI has been accepted by a portion of software development community to mean a daemon process that is watching the source-control repository for changes and verifying that they are correct, regardless of branching model.
+However, the original intention was to focus on the verification single integration point for the developer team.</description>
+    </item>
+    
+    <item>
+      <title>Вливание кода напрямую в trunk</title>
+      <link>https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/</link>
+      <pubDate>Thu, 02 Jun 2016 20:10:46 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/</guid>
+      <description>Некоторые команды предпочитают вливать код прямо в trunk. Скорее всего, это небольшая команда и каждый знает чем занимаются другие. Скорей всего, полная сборка проекта у такой команды очень быстрая, и эта команда редко ломает сборку. Если сборка вдруг сломалась (после вливания кода в trunk/master), то такая команда, скорей всего, сразу же откатит этот код и заблокирует trunk для вливания кода на короткий период времени, пока выполняется откат кода. Если команда действительно мала (скажем, три или четыре разработчика), в этом случае кто-то из команды быстро поправит сборку и вольет изменения в trunk, чтобы сборка снова стала стабильной.</description>
+    </item>
+    
+    <item>
+      <title>Short-Lived Feature Branches</title>
+      <link>https://trunkbaseddevelopment.ru/short-lived-feature-branches/</link>
+      <pubDate>Fri, 03 Jun 2016 20:10:46 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/short-lived-feature-branches/</guid>
+      <description>This branching model was facilitated with the advent of very lightweight branching that came with Git and Mercurial in the mid-2000&amp;rsquo;s, though there is evidence that Google were effectively doing the same in their Monorepo for some years before.
+Either as branching directly off master, or in a fork of the whole repository. These branches are destined to come back as &amp;ldquo;pull requests&amp;rdquo; into the master/trunk.
+With the Pull Request (and code review) advance, the cut-off point for team sizes that graduated from &amp;ldquo;direct to the trunk&amp;rdquo; to short lived feature branches moved lower.</description>
+    </item>
+    
+    <item>
+      <title>Continuous Code Review</title>
+      <link>https://trunkbaseddevelopment.ru/continuous-review/</link>
+      <pubDate>Sun, 05 Jun 2016 20:10:46 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/continuous-review/</guid>
+      <description>The high bar today Continuous Code Review is where the team commits to processing proposed commits (to trunk) from teammates&amp;rsquo; trunk speedily.
+The idea is that a system (the code portal probably) allows developers to package up commits for code review and get that in front of peers quickly. And that peer developers make a commitment to do code reviews objectively and quickly.
+There is a cost to multi-tasking, so maybe someone in the dev team who is between work items at that moment should focus on the review before they start new work.</description>
+    </item>
+    
+    <item>
+      <title>Continuous Delivery (CD)</title>
+      <link>https://trunkbaseddevelopment.ru/continuous-delivery/</link>
+      <pubDate>Fri, 01 Jul 2016 20:10:46 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/continuous-delivery/</guid>
+      <description>Continuous Delivery is the practice expanding your Continuous Integration (CI) usage to automatically re-deploy a proven build to a QA or UAT environment. If the bounce time for a deployment is quick enough, then it could be that you are doing that for every commit that lands in the shared trunk. The Radiator&amp;rsquo;s pipeline view would become:
+The bestselling book of the same name by Jez Humble and Dave Farley, details the &amp;lsquo;marching orders&amp;rsquo; for many companies, where there is whole dev-team improvement agenda.</description>
+    </item>
+    
+    <item>
+      <title>Concurrent development of consecutive releases</title>
+      <link>https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/</link>
+      <pubDate>Tue, 05 Jul 2016 20:10:46 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/</guid>
+      <description>Concurrent Development? Your company wants a stream of major functionality to arrive in the application you are pushing live at a regular cadence. Because you are good Extreme Programmers, you know that consecutive development of consecutive releases is best. However, the effort and length of time needed to complete each major piece of functionality is large enough to require different project teams cooperating towards that plan. Some of those teams will be within the same codebase.</description>
+    </item>
+    
+    <item>
+      <title>Application strangulation</title>
+      <link>https://trunkbaseddevelopment.ru/strangulation/</link>
+      <pubDate>Fri, 08 Jul 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/strangulation/</guid>
+      <description>Strangulation is a mechanism by which a very large disruptive change is made in an application or service that, does not disrupt its ability to go live, even while partially complete. Martin Fowler named this practice (see references below) after the strangler vines that creep up existing trees, in order to steal sunlight at canopy level of a jungle.
+The trick is to have a mechanism to route invocations of logic between the old and new solutions for the same.</description>
+    </item>
+    
+    <item>
+      <title>Observed habits</title>
+      <link>https://trunkbaseddevelopment.ru/observed-habits/</link>
+      <pubDate>Mon, 01 Aug 2016 09:42:02 +0500</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/observed-habits/</guid>
+      <description>No Code Freeze Developers living in a Trunk-Based Development reality, mostly do not experience variance in their days or weeks on the trunk. In particular, there is no &amp;ldquo;we&amp;rsquo;re close to a release so let&amp;rsquo;s freeze code&amp;rdquo;, and generally there is no indication of a slowdown in proximity to a release. Sure, a couple of developers out of a team might be assigned to bug-fixing closer to the release but everyone else is going to work at full speed.</description>
+    </item>
+    
+    <item>
+      <title>You&#39;re doing it wrong</title>
+      <link>https://trunkbaseddevelopment.ru/youre-doing-it-wrong/</link>
+      <pubDate>Thu, 01 Sep 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/youre-doing-it-wrong/</guid>
+      <description>Merely naming a branch trunk. Say you are using Subversion, and you accepted its default directory design, when you made a new repository. That will give you &amp;lsquo;trunk&amp;rsquo;, &amp;lsquo;tags&amp;rsquo; and &amp;lsquo;branches&amp;rsquo; as directory names. The mere fact that you have a branch called trunk does not mean you are doing Trunk-Based Development. &amp;ldquo;We merge branches back to trunk often&amp;rdquo; can be heard a lot in the industry, and if you are grouping multiple developers on those branches or they are not deleted after a couple of days, then it is not the Trunk-Based Development branching model.</description>
+    </item>
+    
+    <item>
+      <title>Alternative branching models</title>
+      <link>https://trunkbaseddevelopment.ru/alternative-branching-models/</link>
+      <pubDate>Sat, 01 Oct 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/alternative-branching-models/</guid>
+      <description>Branch: only when necessary, on incompatible policy, late, and instead of freeze
+— Laura Wingerd &amp;amp; Christopher Seiwald(1998&amp;rsquo;s High-Level SCM Best Practices white paper from Perforce)   Modern claimed high-throughput branching models GitHub flow This is sooooo close to PR-centric Trunk-Based Development. Why? Because it is a branching model that has individual developers active concurrently in more than one (short-lived) branch (or fork). Or developer pairs, rather than individuals.</description>
+    </item>
+    
+    <item>
+      <title>Monorepos</title>
+      <link>https://trunkbaseddevelopment.ru/monorepos/</link>
+      <pubDate>Tue, 01 Nov 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/monorepos/</guid>
+      <description>A Monorepo is a specific Trunk-Based Development implementation where the organization in question puts its source for all applications/services/libraries/frameworks into one trunk and forces developers to commit together in that trunk - atomically.
+Google has the most famous monorepo and they do the above AND force teams to share code at source level instead of linking in previously built binaries. Specifically, they have no version numbers for their own dependencies, just an implicit &amp;lsquo;HEAD&amp;rsquo;.</description>
+    </item>
+    
+    <item>
+      <title>Expanding Contracting Monorepos</title>
+      <link>https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/</link>
+      <pubDate>Wed, 02 Nov 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/</guid>
+      <description>At some point with a monorepo approach to source control (especially with binary dependencies in the source tree), your checkouts could be bigger than your local workstation&amp;rsquo;s hard drive. Or even if the checkout is not too big for your hard drive, then it might be too much for your IDE, and you do not want to have to abandon it for Vim/Emacs. Or maybe it is not your IDE that chokes but rather is something about the build that&amp;rsquo;s too much locally, despite command-line arguments to attempt to pare it down for a shorter elapsed time.</description>
+    </item>
+    
+    <item>
+      <title>Game Changers</title>
+      <link>https://trunkbaseddevelopment.ru/game-changers/</link>
+      <pubDate>Thu, 01 Dec 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/game-changers/</guid>
+      <description>Since the early 80&amp;rsquo;s a number of things have pushed best practices towards Trunk-Based Development, or away from it.
+The language in use to describe such things has changed over time. Software Configuration Management (SCM) is used less today than Version Control Systems (VCS) is. A simpler still term - &amp;ldquo;Source Control&amp;rdquo; - seems to be used more recently, too.
+Similarly, &amp;lsquo;trunk&amp;rsquo; and &amp;lsquo;branch&amp;rsquo;, have not always been used as terms for controlled code lines that have a common ancestor, and are eminently (and repeatably) mergeable.</description>
+    </item>
+    
+    <item>
+      <title>Publications</title>
+      <link>https://trunkbaseddevelopment.ru/publications/</link>
+      <pubDate>Sun, 01 Jan 2017 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/publications/</guid>
+      <description>Books promoting Trunk-Based Development Software Configuration Management Patterns (November 14, 2003) Continuous Integration (June 29, 2007) Continuous Delivery (July 27, 2010) Lean Enterprise (January 3, 2015) Build Quality In (February 27, 2015) DevOps Handbook (October 6, 2016) Measuring Continuous Delivery (2017) Reports promoting Trunk-Based Development More Engineering, Less Dogma (Oct 18, 2013) The Role of Continuous Delivery in IT and Organisational Performance (Oct 27, 2015) 2015 State of DevOps Report 2016 State of DevOps Report 2017 State of DevOps Report </description>
+    </item>
+    
+    <item>
+      <title>Book</title>
+      <link>https://trunkbaseddevelopment.ru/book/</link>
+      <pubDate>Mon, 02 Jan 2017 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/book/</guid>
+      <description>The TrunkBasedDevelopment.com site transformed into book, via scripts:
+ English PDF - interactive English PDF - printable with all links changed to footnotes (noninteractive) English MOBI - for Amazon&amp;rsquo;s Kindle English EPUB - for iBooks, Google Books, Nook, and others  The book, like the site, will change going forward as the science and references grow. The book is free (as in beer) to download of course, but only if unchanged versus the version on the TrunkBasedDevelopment.</description>
+    </item>
+    
+    <item>
+      <title>Key to branch diagrams</title>
+      <link>https://trunkbaseddevelopment.ru/key/</link>
+      <pubDate>Wed, 01 Mar 2017 20:08:11 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/key/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Contributions</title>
+      <link>https://trunkbaseddevelopment.ru/contributions/</link>
+      <pubDate>Mon, 01 Jan 2018 21:07:33 +0100</pubDate>
+      
+      <guid>https://trunkbaseddevelopment.ru/contributions/</guid>
+      <description>Paul Hammant would like to acknowledge the contributions of a few people to the content of this site/book:
+ CD expert and friend Steve Smith- contributions to various pages. TODO  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/</loc>
+    <lastmod>2015-01-01T21:07:33+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/context/</loc>
+    <lastmod>2015-01-05T09:42:02+05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/5-min-overview/</loc>
+    <lastmod>2016-01-01T09:42:02+05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/deciding-factors/</loc>
+    <lastmod>2016-02-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/vcs-features/</loc>
+    <lastmod>2016-03-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/vcs-choices/</loc>
+    <lastmod>2016-03-02T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/feature-flags/</loc>
+    <lastmod>2016-04-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/branch-by-abstraction/</loc>
+    <lastmod>2016-05-03T19:56:50+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/branch-for-release/</loc>
+    <lastmod>2016-05-05T19:56:50+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/release-from-trunk/</loc>
+    <lastmod>2016-05-06T19:56:50+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/styles/</loc>
+    <lastmod>2016-06-01T20:10:45+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/continuous-integration/</loc>
+    <lastmod>2016-06-01T20:10:46+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/committing-straight-to-the-trunk/</loc>
+    <lastmod>2016-06-02T20:10:46+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/short-lived-feature-branches/</loc>
+    <lastmod>2016-06-03T20:10:46+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/continuous-review/</loc>
+    <lastmod>2016-06-05T20:10:46+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/continuous-delivery/</loc>
+    <lastmod>2016-07-01T20:10:46+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/concurrent-development-of-consecutive-releases/</loc>
+    <lastmod>2016-07-05T20:10:46+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/strangulation/</loc>
+    <lastmod>2016-07-08T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/observed-habits/</loc>
+    <lastmod>2016-08-01T09:42:02+05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/youre-doing-it-wrong/</loc>
+    <lastmod>2016-09-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/alternative-branching-models/</loc>
+    <lastmod>2016-10-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/monorepos/</loc>
+    <lastmod>2016-11-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/expanding-contracting-monorepos/</loc>
+    <lastmod>2016-11-02T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/game-changers/</loc>
+    <lastmod>2016-12-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/publications/</loc>
+    <lastmod>2017-01-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/book/</loc>
+    <lastmod>2017-01-02T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/key/</loc>
+    <lastmod>2017-03-01T20:08:11+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/contributions/</loc>
+    <lastmod>2018-01-01T21:07:33+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/categories/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://trunkbaseddevelopment.ru/tags/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
